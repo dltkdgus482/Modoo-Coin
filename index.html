@@ -1,108 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>암호화폐 거래 대시보드</title>
-    <link rel="stylesheet" href="./css/profile.css">
-    <link rel="stylesheet" href="./css/portfolio.css">
-    <link rel="stylesheet" href="./css/list.css">
-    <link rel="stylesheet" href="./css/transaction.css">
-    <link rel="stylesheet" href="./css/chart.css">
-    <link rel="stylesheet" href="./css/background.css">
-</head>
-<body>
-    <div class="container">
-        <!-- 왼쪽 상단 프로필 카드 -->
-        <div class="card profile-card">
-            <div class="banner-section">
-                <!-- 배너 영역 -->
-            </div>
-            <div class="profile-section">
-                <div class="profile-item">
-                    <span>NAME:</span>
-                    <span class="profile-value"><!-- 이름 --></span>
-                </div>
-                <div class="profile-item">
-                    <span>LEVEL:</span>
-                    <span class="profile-value"><!-- 레벨 --></span>
-                </div>
-                <div class="profile-item">
-                    <span>EXP:</span>
-                    <span class="profile-value"><!-- 경험치 --></span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                </div>
-                <div class="profile-item">
-                    <span>DEPOSIT:</span>
-                    <span class="profile-value"><!-- 예치금 --></span>
-                </div>
-                <div class="profile-item">
-                    <span>PROFIT:</span>
-                    <span class="profile-value"><!-- 수익 --></span>
-                </div>
-                <div class="profile-item">
-                    <span>RANK:</span>
-                    <span class="profile-value"><!-- 등급 --></span>
-                </div>
-            </div>
-            <div class="card-indicator"></div>
-        </div>
-
-        <!-- 오른쪽 상단 거래 카드 -->
-        <div class="card trading-card">
-            <div class="crypto-header">CRYPTO TRADING</div>
-            <div class="crypto-list">
-                <!-- 암호화폐 목록 -->
-                <div class="crypto-item">
-                    <span class="crypto-name"><!-- 코인명 --></span>
-                    <div>
-                        <span class="crypto-price"><!-- 가격 --></span>
-                        <span class="crypto-change"><!-- 변동률 --></span>
-                    </div>
-                </div>
-                <!-- 추가 암호화폐 항목들 -->
-            </div>
-
-            <div class="crypto-name" style="margin-bottom: 10px;"><!-- 선택된 코인명 --></div>
-            <div class="crypto-price" style="text-align: right; margin-bottom: 10px;"><!-- 선택된 코인 가격 --></div>
-            
-            <div class="chart-container">
-                <!-- 차트 영역 -->
-            </div>
-            
-            <div class="input-container">
-                <span style="color: #2a7d7d; margin-right: 10px;">QUANTITY:</span>
-                <input type="text" class="quantity-input" value="">
-            </div>
-            
-            <div class="button-container">
-                <div class="buy-button">BUY</div>
-                <div class="sell-button">SELL</div>
-            </div>
-            <div class="card-indicator"></div>
-            <div class="top-right-indicator"></div>
-        </div>
-
-        <!-- 하단 포트폴리오 카드 -->
-        <div class="card portfolio-card">
-            <div class="portfolio-header">
-                <div class="portfolio-title">YOUR PORTFOLIO</div>
-                <div class="tab-container">
-                    <div class="tab active">ASSETS</div>
-                    <div class="tab">HISTORY</div>
-                </div>
-            </div>
-            <div class="portfolio-content">
-                <div class="empty-state">
-                    <p><strong>No assets yet</strong></p>
-                    <p>Start trading to build your portfolio!</p>
-                </div>
-            </div>
-            <div class="card-indicator"></div>
-            <div class="top-right-indicator"></div>
-        </div>
-    </div>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
