@@ -1,0 +1,42 @@
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.portfolio-card {
+    width: 100%;
+    margin-top: 0;
+}
+
+.portfolio-title {
+    color: #2a7d7d;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.portfolio-content {
+    border: 1px solid #2a7d7d;
+    padding: 20px;
+    min-height: 150px;
+}
+
+.empty-state {
+    color: #666;
+}
+
+.tab-container {
+    display: flex;
+}
+
+.tab {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: 1px solid #011111;
+}
+
+.tab.active {
+    background-color: #2a7d7d;
+    color: white;
+}

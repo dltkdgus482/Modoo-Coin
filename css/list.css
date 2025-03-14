@@ -1,0 +1,31 @@
+.crypto-header {
+    color: #2a7d7d;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.crypto-list {
+    border: 1px solid #2a7d7d;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.crypto-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.crypto-name {
+    font-weight: bold;
+}
+
+.crypto-price {
+    text-align: right;
+}
+
+.crypto-change {
+    color: #2a7d7d;
+}
