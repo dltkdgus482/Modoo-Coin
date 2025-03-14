@@ -1,0 +1,35 @@
+.input-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.quantity-input {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #2a7d7d;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.buy-button, .sell-button {
+    flex: 1;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+.buy-button {
+    background-color: #2a7d7d;
+}
+
+.sell-button {
+    background-color: #3a6ea5;
+}
