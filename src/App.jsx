@@ -1,12 +1,11 @@
-import Temp from "./components/Temp";
+import PositionContainer from './components/position/PositionContainer';
 
 function App() {
   return (
     <>
-      <h1>리액트 프로젝트</h1>
-      <Temp></Temp>
+      <PositionContainer />
     </>
-  )
+  );
 }
 
 export default App;
