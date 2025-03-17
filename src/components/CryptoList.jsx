@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -16,6 +17,7 @@ const SelectedCoinHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--hana-primary);
+
   color: #000000;
   padding: 10px;
   font-size: 12px;
@@ -64,6 +66,7 @@ const Change = styled.span`
   color: ${(props) => (props.value > 0 ? 'var(--hana-primary)' : 'var(--hana-blue)')};
 `;
 
+
 const cryptoNames = {
   "KRW-BTC": "비트코인 (BTC)",
   "KRW-ETH": "이더리움 (ETH)",
@@ -84,12 +87,15 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
   return (
     <Container>
       <SelectedCoinHeader>
+
         <div>{cryptoNames[selectedCoinKey] || selectedCoinKey}</div>
         <div>{selectedCoin.trade_price.toLocaleString()} KRW</div>
+
       </SelectedCoinHeader>
 
       <CoinListContainer>
         <CoinListUL>
+
           {Object.entries(cryptoNames).map(([code, name]) => {
             const info = tradeData[code];
             return (
@@ -104,6 +110,7 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
               </CoinListItem>
             );
           })}
+
         </CoinListUL>
       </CoinListContainer>
     </Container>

@@ -11,9 +11,10 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 
 import React, { useState,useEffect } from "react";
-import Temp from "./components/Temp";
+
 import Trade from "./components/Trade";
 import CryptoList from "./components/CryptoList";
+
 
 
 function App() {
