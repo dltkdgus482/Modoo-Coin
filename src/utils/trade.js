@@ -59,22 +59,3 @@ export function closePosition (action, enterPrice, exitPrice, quantity, currentB
         timestamp
     };
 }
-
-// ✅ 테스트 실행
-const balance = 10000; // 초기 잔고
-
-// 📌 롱 포지션 진입 (BTC 500원에 10개 매수)
-const longPosition = enterPosition("BTC","long", 500, 10, balance);
-console.log("📌 롱 포지션 진입:", longPosition);
-
-// 📌 롱 포지션 청산 (BTC를 600원에 매도하여 수익 실현)
-const longResult = closePosition("long", 500, 600, 10, longPosition.updatedBalance);
-console.log("📌 롱 포지션 청산:", longResult);
-
-// 📌 숏 포지션 진입 (BTC 700원에 공매도)
-const shortPosition = enterPosition("BTC","short", 700, 5, longResult.updatedBalance);
-console.log("📌 숏 포지션 진입:", shortPosition);
-
-// 📌 숏 포지션 청산 (BTC를 600원에 매수하여 이익 실현)
-const shortResult = closePosition("short", 700, 600, 5, shortPosition.updatedBalance);
-console.log("📌 숏 포지션 청산:", shortResult);

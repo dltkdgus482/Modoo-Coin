@@ -1,0 +1,156 @@
+
+/* Pixel Game Base Styles with Hana Financial Group Colors */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333333;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEklEQVQImWNgYGD4z0AswK4SAFXuAf8EPy+xAAAAAElFTkSuQmCC");
+    background-repeat: repeat;
+}
+
+/* Hana Financial Group Colors */
+:root {
+    --hana-primary: #00857e;      /* Hana primary green */
+    --hana-secondary: #008485;    /* Slightly different green shade */
+    --hana-accent: #00a19a;       /* Lighter green for accents */
+    --hana-dark: #005e56;         /* Darker green for shadows */
+    --hana-light: #e6f3f2;        /* Very light green for backgrounds */
+    --hana-gray: #f5f5f5;         /* Light gray for backgrounds */
+    --hana-dark-gray: #333333;    /* Dark gray for text */
+    --hana-blue: #0072bc;         /* Blue accent color */
+    --hana-yellow: #ffd400;       /* Yellow accent for highlights */
+}
+
+/* Pixel Border Mixin */
+.pixel-borders {
+    border-style: solid;
+    border-width: 4px;
+    border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAzFBMVEUAAACAYECfbzDPkBi/gCDPhxjfnxDfoBDvsBDvsRD/wxD/xBD/xRCAYECfbzC/gCDPkBjfnxDvsBD/wxCAYECPaDCfbzCveDC/gCC/gSDPjxjPkBjfnxDfoBDvsBDvsRD/wxD/xBCAYECPaDCfbzCveDC/gCC/gSDPjxjPkBjfnxDfoBDvsBDvsRD/wxD/xBCAYECPaDCfbzCveDC/gCDPjxjfnxDvsBD/wxCAYECPaDCfbzCveDC/gCDPjxjfnxDvsBD/wxD////NIeIZAAAAQ3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQwAAAAFiS0dEAIgFHUgAAAEiSURBVFjD7dfZboMwEIVhIGEJW9gCZQ1b2dqypGkTaEPe/6Wq0JwLZDwTR+qF/+JIVj5bYMYePLwP1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtT5B8ALNXZiaxZbswAAAABJRU5ErkJggg==");
+    border-image-slice: 4;
+    border-image-repeat: space;
+    background-color: var(--hana-light);
+    padding: 16px;
+    box-shadow: 0 4px 0 var(--hana-dark);
+}
+
+.pixel-borders-thin {
+    border-style: solid;
+    border-width: 3px;
+    border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAzFBMVEUAAACAYECfbzDPkBi/gCDPhxjfnxDfoBDvsBDvsRD/wxD/xBD/xRCAYECfbzC/gCDPkBjfnxDvsBD/wxCAYECPaDCfbzCveDC/gCC/gSDPjxjPkBjfnxDfoBDvsBDvsRD/wxD/xBCAYECPaDCfbzCveDC/gCC/gSDPjxjPkBjfnxDfoBDvsBDvsRD/wxD/xBCAYECPaDCfbzCveDC/gCDPjxjfnxDvsBD/wxCAYECPaDCfbzCveDC/gCDPjxjfnxDvsBD/wxD////NIeIZAAAAQ3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQwAAAAFiS0dEAIgFHUgAAAEiSURBVFjD7dfZboMwEIVhIGEJW9gCZQ1b2dqypGkTaEPe/6Wq0JwLZDwTR+qF/+JIVj5bYMYePLwP1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtShQB0K1KFAHQrUoUAdCtT5B8ALNXZiaxZbswAAAABJRU5ErkJggg==");
+    border-image-slice: 3;
+    border-image-repeat: space;
+    background-color: white;
+    padding: 8px;
+}
+
+/* Selected coin details */
+.selected-coin-details {
+    background-color: white;
+    border: 2px solid var(--hana-primary);
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.coin-detail-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.coin-detail-name {
+    font-size: 12px;
+    color: var(--hana-primary);
+}
+
+.coin-detail-price {
+    font-size: 12px;
+    color: var(--hana-dark-gray);
+}
+
+/* Trading form */
+.trading-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-label {
+    font-size: 10px;
+    color: var(--hana-primary);
+}
+
+.quantity-input {
+    background-color: white;
+    border: 2px solid var(--hana-primary);
+    color: var(--hana-dark-gray);
+    padding: 8px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    width: 120px;
+}
+
+/* Trading controls */
+.trading-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.trade-button {
+    flex: 1;
+    background-color: white;
+    border: none;
+    color: white;
+    padding: 12px 8px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.buy-button {
+    background-color: var(--hana-primary);
+    border: 2px solid var(--hana-dark);
+}
+
+.buy-button:hover {
+    background-color: var(--hana-accent);
+    transform: translateY(-2px);
+}
+
+.sell-button {
+    background-color: var(--hana-blue);
+    border: 2px solid #005a8c;
+}
+
+.sell-button:hover {
+    background-color: #0085d6;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+
+
