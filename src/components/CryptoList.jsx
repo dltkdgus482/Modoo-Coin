@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -13,7 +14,7 @@ const SelectedCoinHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--hana-primary);
-  color: #fff;
+  color: #000000;
   padding: 10px;
   font-size: 12px;
 `;
@@ -69,14 +70,13 @@ const cryptoNames = {
   "KRW-ADA": "에이다 (ADA)",
 };
 
-const CryptoList = ({ tradeData }) => {
+const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
   useEffect(() => {
     if (tradeData) {
       // console.log("💹 새로운 거래 데이터 수신:", tradeData);
     }
   }, [tradeData]);
 
-  const selectedCoinKey = Object.keys(tradeData)[0] || "KRW-BTC";
   const selectedCoin = tradeData[selectedCoinKey] || { trade_price: 0, change_price: 0, change: "" };
 
   return (
@@ -91,12 +91,12 @@ const CryptoList = ({ tradeData }) => {
           {Object.entries(cryptoNames).map(([code, name]) => {
             const info = tradeData[code];
             return (
-              <CoinListItem key={code}>
+              <CoinListItem key={code} onClick={() => updateSelectedCoin(code)}>
                 <Symbol>{name}</Symbol>
                 <Price>{info ? `${info.trade_price.toLocaleString()} KRW` : "데이터 없음"}</Price>
                 {info && (
                   <Change value={info.change_price}>
-                    {info.change === "RISE" ? "▲" : info.change === "FALL" ? "▼" : "-"} {info.change_price.toLocaleString()} KRW
+                    {info.change_price.toLocaleString()} KRW {info.change === "RISE" ? "▲" : info.change === "FALL" ? "▼" : "-"}
                   </Change>
                 )}
               </CoinListItem>

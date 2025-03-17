@@ -5,6 +5,7 @@ import CryptoList from "./components/CryptoList";
 
 function App() {
   const [tradeData, setTradeData] = useState({});
+  const [selectedCoinKey, setSelectedCoinKey] = useState("KRW-BTC");
 
   useEffect(() => {
     const upbitWS = new UpbitWebSocket(["KRW-BTC", "KRW-ETH", "KRW-XRP", "KRW-DOT", "KRW-ADA"]);
@@ -29,6 +30,10 @@ function App() {
       upbitWS.close();
     };
   }, []);
+
+  const onSetSelectedCoin = ((code) => {
+    setSelectedCoinKey(code);
+  })
 
   return (
     <>
