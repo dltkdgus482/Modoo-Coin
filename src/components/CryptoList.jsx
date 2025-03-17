@@ -3,10 +3,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100%;
-  max-width: 300px;
+  width: 92%;
+  height: 44%;
+  border: 3px solid #008485;
   font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
+  overflow-y: scroll;
 `;
 
 const SelectedCoinHeader = styled.div`

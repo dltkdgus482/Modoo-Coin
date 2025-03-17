@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  styled-components: ^6.1.15
+
 importers:
 
   .:

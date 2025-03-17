@@ -1,7 +1,14 @@
+// Libraries
+import styled from 'styled-components';
 import { useEffect, useState } from "react";
+
+// Utils
 import { UpbitWebSocket } from "./utils/cryptoInfo";
-import Temp from "./components/Temp";
-import CryptoList from "./components/CryptoList";
+
+// Components
+import LUComponent from './components/dummyComponents/LUComponent';
+import RUComponent from './components/dummyComponents/RUComponent';
+import PositionContainer from './components/position/PositionContainer';
 
 function App() {
   const [tradeData, setTradeData] = useState({});
@@ -36,12 +43,35 @@ function App() {
   })
 
   return (
-    <>
-      <h1>리액트 프로젝트</h1>
-      <Temp />
-      <CryptoList tradeData={tradeData} />
-    </>
+    <Container>
+      <UpperContainer>
+        <LUComponent />
+        <RUComponent tradeData={tradeData} />
+      </UpperContainer>
+      <PositionContainer />
+    </Container>
   );
 }
 
 export default App;
+
+// Styled Components
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+
+  background-color: rgb(225, 225, 225);
+`;
+
+const UpperContainer = styled.div`
+  width: 70%;
+  height: 52%;
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+`;
