@@ -5,22 +5,12 @@ import { closePosition } from '../../utils/positionUtils';
 import styled from 'styled-components';
 
 // Components
+import PositionItemInfo from './PositionItemInfo';
 
 const PositionItem = ({ position }) => {
-  // {
-  //   entryDate: "2025-03-14",
-  //   coinName: "BTC-KRW",
-  //   entryPrice: 65700,
-  //   quantity: 0.5,
-  //   orderType: "Short",
-  // },
   return (
     <Container>
-      <p>{position.coinName}</p>
-      <p>{position.quantity}</p>
-      <p>{position.entryPrice.toLocaleString()}</p>
-      <p>{position.entryDate}</p>
-      <p>{position.orderType}</p>
+      <PositionItemInfo position={position} />
       <Button onClick={() => closePosition()}>Close</Button>
     </Container>
   );
@@ -38,6 +28,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border: 2px solid #008485;
+  box-shadow: 4px 4px 10px rgba(0, 132, 133, 0.2);
   background-color: white;
 `;
 

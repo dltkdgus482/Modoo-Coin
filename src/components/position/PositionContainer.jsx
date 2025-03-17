@@ -27,7 +27,7 @@ export default PositionContainer;
 // Styled Components
 const Container = styled.div`
   width: 68%;
-  height: 21%;
+  height: 26%;
   display: flex;
   position: relative;
   flex-direction: column;

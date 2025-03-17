@@ -29,11 +29,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1vw;
+
+  background-color: rgb(225, 225, 225);
 `;
 
 const UpperContainer = styled.div`
   width: 70%;
-  height: 57%;
+  height: 52%;
   display: flex;
   flex-direction: row;
   gap: 1vw;
