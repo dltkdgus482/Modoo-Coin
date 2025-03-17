@@ -9,8 +9,6 @@ import { UpbitWebSocket } from "./utils/cryptoInfo";
 import LUComponent from './components/dummyComponents/LUComponent';
 import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
-import Temp from "./components/Temp";
-import CryptoList from "./components/CryptoList";
 
 function App() {
   const [tradeData, setTradeData] = useState({});
@@ -43,15 +41,10 @@ function App() {
     <Container>
       <UpperContainer>
         <LUComponent />
-        <RUComponent />
+        <RUComponent tradeData={tradeData} />
       </UpperContainer>
       <PositionContainer />
     </Container>
-//     <>
-//       <h1>리액트 프로젝트</h1>
-//       <Temp />
-//       <CryptoList tradeData={tradeData} />
-//     </>
   );
 }
 
