@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { UpbitWebSocket } from "./utils/cryptoInfo";
 
 // Components
-import LUComponent from './components/dummyComponents/LUComponent';
+import UserContainer from './components/user/UserContainer';
 import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 
@@ -40,7 +40,7 @@ function App() {
   return (
     <Container>
       <UpperContainer>
-        <LUComponent />
+        <UserContainer />
         <RUComponent tradeData={tradeData} />
       </UpperContainer>
       <PositionContainer />

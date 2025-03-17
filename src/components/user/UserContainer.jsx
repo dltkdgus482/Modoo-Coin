@@ -1,19 +1,22 @@
 // Libraries
 import styled from 'styled-components';
 
-// Components
+// Other Components
+import UserCharacter from './UserCharacter';
+import UserInfo from './UserInfo';
 import CornerList from '../corner/CornerList';
 
-// 캐릭터 정보 창이 위치할 더미 컴포넌트입니다.
-const LUComponent = () => {
+const UserContainer = () => {
   return (
     <Container>
+      <UserCharacter />
+      <UserInfo />
       <CornerList />
     </Container>
   );
 };
 
-export default LUComponent;
+export default UserContainer;
 
 // Styled Components
 const Container = styled.div`
@@ -22,4 +25,10 @@ const Container = styled.div`
   position: relative;
   border: 3px solid black;
   background-color: #e9f2f1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
 `;
