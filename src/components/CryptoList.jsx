@@ -1,12 +1,15 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { useCoinInfo } from '../store/useCoinInfo';
 
 const Container = styled.div`
-  width: 100%;
-  max-width: 300px;
+  width: 92%;
+  height: 44%;
+  border: 3px solid #008485;
   font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
+  overflow-y: scroll;
 `;
 
 const SelectedCoinHeader = styled.div`
@@ -14,7 +17,8 @@ const SelectedCoinHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--hana-primary);
-  color: #fff;
+
+  color: #000000;
   padding: 10px;
   font-size: 12px;
 `;
@@ -62,29 +66,51 @@ const Change = styled.span`
   color: ${(props) => (props.value > 0 ? 'var(--hana-primary)' : 'var(--hana-blue)')};
 `;
 
-const CryptoList = () => {
-  const tradingInfo = useCoinInfo();
 
-  const selectedCoin = tradingInfo[0] || { symbol: 'BTC', price: 0, change: 0 };
+const cryptoNames = {
+  "KRW-BTC": "비트코인 (BTC)",
+  "KRW-ETH": "이더리움 (ETH)",
+  "KRW-XRP": "리플 (XRP)",
+  "KRW-DOT": "폴카닷 (DOT)",
+  "KRW-ADA": "에이다 (ADA)",
+};
+
+const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
+  useEffect(() => {
+    if (tradeData) {
+      // console.log("💹 새로운 거래 데이터 수신:", tradeData);
+    }
+  }, [tradeData]);
+
+  const selectedCoin = tradeData[selectedCoinKey] || { trade_price: 0, change_price: 0, change: "" };
 
   return (
     <Container>
       <SelectedCoinHeader>
-        <div>{selectedCoin.symbol}</div>
-        <div>{selectedCoin.price.toLocaleString()} $</div>
+
+        <div>{cryptoNames[selectedCoinKey] || selectedCoinKey}</div>
+        <div>{selectedCoin.trade_price.toLocaleString()} KRW</div>
+
       </SelectedCoinHeader>
 
       <CoinListContainer>
         <CoinListUL>
-          {tradingInfo.map((crypto) => (
-            <CoinListItem key={crypto.symbol}>
-              <Symbol>{crypto.symbol}</Symbol>
-              <Price>{crypto.price.toLocaleString()} $</Price>
-              <Change value={crypto.change}>
-                {crypto.change > 0 ? '▲' : '▼'} {crypto.change}%
-              </Change>
-            </CoinListItem>
-          ))}
+
+          {Object.entries(cryptoNames).map(([code, name]) => {
+            const info = tradeData[code];
+            return (
+              <CoinListItem key={code} onClick={() => updateSelectedCoin(code)}>
+                <Symbol>{name}</Symbol>
+                <Price>{info ? `${info.trade_price.toLocaleString()} KRW` : "데이터 없음"}</Price>
+                {info && (
+                  <Change value={info.change_price}>
+                    {info.change_price.toLocaleString()} KRW {info.change === "RISE" ? "▲" : info.change === "FALL" ? "▼" : "-"}
+                  </Change>
+                )}
+              </CoinListItem>
+            );
+          })}
+
         </CoinListUL>
       </CoinListContainer>
     </Container>
