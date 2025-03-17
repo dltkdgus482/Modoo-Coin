@@ -15,13 +15,9 @@ const PositionContainer = () => {
 
   return (
     <Container>
+      <PositionHeader setPositionArray={setPositionArray} />
+      <PositionList positionArray={positionArray} />
       <CornerList />
-      <PositionHeader 
-        setPositionArray={setPositionArray}
-      />
-      <PositionList
-        positionArray={positionArray}
-      />
     </Container>
   );
 };
@@ -30,11 +26,12 @@ export default PositionContainer;
 
 // Styled Components
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 68%;
+  height: 21%;
   display: flex;
   position: relative;
   flex-direction: column;
   border: 3px solid black;
-  background-color: white;
+  background-color: #E9F2F1;
+  padding: 1%;
 `;
