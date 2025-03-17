@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { enterPosition, closePosition } from "../utils/trade"; // ✅ trade.js import
 import "../styles/Trade.css"; // ✅ CSS 파일 추가
 
-export default function TradeGame({ currentBalance, setBalance, selectedCoin }) {
-    console.log("📌 전달된 잔고:", currentBalance);
-    console.log("📌 전달된 선택된 코인:", selectedCoin);
+export default function TradeGame({ currentBalance, setBalance, tradeData }) {
+    console.log("📌 최신 코인 데이터:", tradeData);
 
-    // ✅ 포지션 목록 & 수량 상태 추가
-    const [positions, setPositions] = useState([]);
+    // ✅ 선택된 코인 Key와 가격 상태 관리
+    const [selectedCoinKey, setSelectedCoinKey] = useState("KRW-BTC"); // 기본값: 비트코인
+    const [selectedCoin, setSelectedCoin] = useState(tradeData["KRW-BTC"]?.trade_price || 0);
     const [quantity, setQuantity] = useState(0.1); // 기본값: 0.1개
+    const [positions, setPositions] = useState([]); // 포지션 목록
 
-    // ✅ 코인 정보 가져오기
-    const coinType = selectedCoin?.coinType || "BTC";
-    const coinPrice = selectedCoin?.price || 0;
+    // ✅ tradeData가 업데이트될 때마다 선택된 코인의 가격을 자동으로 갱신
+    useEffect(() => {
+        if (tradeData[selectedCoinKey]) {
+            setSelectedCoin(tradeData[selectedCoinKey].trade_price);
+        }
+    }, [tradeData, selectedCoinKey]); // tradeData 또는 selectedCoinKey가 변경될 때 실행
 
+    
     // ✅ 포지션 진입 (롱 or 숏)
     const handleEnter = (coinType, action, price, quantity) => {
         if (!coinType || price <= 0) {
@@ -38,13 +43,23 @@ export default function TradeGame({ currentBalance, setBalance, selectedCoin }) 
 
     return (
         <div className="selected-coin-details pixel-borders-thin">
-            <div>
-
+            {/* 🔥 실시간 코인 선택 드롭다운 */}
+            <div className="form-row">
+                <label className="form-label">SELECT COIN:</label>
+                <select 
+                    className="quantity-input"
+                    value={selectedCoinKey}
+                    onChange={(e) => setSelectedCoinKey(e.target.value)}
+                >
+                    {Object.keys(tradeData).map((coin) => (
+                        <option key={coin} value={coin}>{coin}</option>
+                    ))}
+                </select>
             </div>
             {/* 코인 이름 & 가격 */}
             <div className="coin-detail-header">
-                <div className="coin-detail-name">{selectedCoin?.coinType || "선택된 코인 없음"}</div>
-                <div className="coin-detail-price">{selectedCoin?.price ? selectedCoin.price.toLocaleString() + "원" : "가격 없음"}</div>
+                <div className="coin-detail-name">{selectedCoinKey || "선택된 코인 없음"}</div>
+                <div className="coin-detail-price">{selectedCoin.toLocaleString() + "원" || "가격 없음"}</div>
             </div>
 
             {/* 수량 입력 */}
