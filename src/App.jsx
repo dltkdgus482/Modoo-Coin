@@ -1,6 +1,5 @@
 // Libraries
 import styled from 'styled-components';
-import { useEffect, useState } from "react";
 
 // Utils
 import { UpbitWebSocket } from "./utils/cryptoInfo";
@@ -11,11 +10,6 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 
 import React, { useState,useEffect } from "react";
-
-import Trade from "./components/Trade";
-import CryptoList from "./components/CryptoList";
-
-
 
 function App() {
   const [tradeData, setTradeData] = useState({});
@@ -49,13 +43,10 @@ function App() {
       <UpperContainer>
         <UserContainer />
         <RUComponent tradeData={tradeData} />
-        <CryptoList tradeData={tradeData} />
-        <Trade tradeData={tradeData}/>
       </UpperContainer>
       <PositionContainer />
     </Container>
   );
-
 }
 
 export default App;
