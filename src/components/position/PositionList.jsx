@@ -1,14 +1,18 @@
 // Libraries
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 // Components
 import PositionItem from './PositionItem';
 
-const PositionList = ({ positionArray }) => {
+const PositionList = ({ positionArray, tradeData, balance, setBalance, setPositionArray }) => {
+  useEffect(() => {
+    console.log('현재 포지션 업데이트')
+  }, [positionArray])
   return (
     <Container>
       {positionArray.map((position, idx) => {
-        return <PositionItem key={idx} position={position} />;
+        return <PositionItem key={idx} position={position} tradeData={tradeData} balance={balance} setBalance={setBalance} positionArray={positionArray} setPositionArray={setPositionArray}/>;
       })}
     </Container>
   );
@@ -21,14 +25,14 @@ const Container = styled.div`
   width: 100%;
   height: 80%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   gap: min(2%, 20px);
-  overflow-x: scroll;
-  
+  overflow-y: scroll;
+
   // IE, Firefox 제외 스크롤바 디자인
   &::-webkit-scrollbar {
-    height: 4px;
+    width: 4px;
     bottom: 0px;
   }
 
@@ -37,7 +41,7 @@ const Container = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #E9F2F1;
+    background: #e9f2f1;
   }
   // IE, Firefox 스크롤바 디자인
 `;
