@@ -1,20 +1,14 @@
-// DummyData
-import { positionData } from './mocks/dummyData';
-
 // Libraries
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
-import { calBenefit } from './utils/trade'
 
 // Components
 import UserContainer from './components/user/UserContainer';
 import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
-import Trade from './components/Trade';
-
-import React, { useState, useEffect } from 'react';
 
 function App() {
   const [tradeData, setTradeData] = useState({});
@@ -90,7 +84,7 @@ const Container = styled.div`
 
 const UpperContainer = styled.div`
   width: 70%;
-  height: 52%;
+  height: 60%;
   display: flex;
   flex-direction: row;
   gap: 1vw;
