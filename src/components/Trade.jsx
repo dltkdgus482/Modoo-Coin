@@ -19,6 +19,14 @@ export default function TradeGame({
     tradeData['KRW-BTC']?.trade_price || 0
   );
   const [quantity, setQuantity] = useState(0.1); // 기본값: 0.1개
+  
+  const cryptoNames = {
+    "KRW-BTC": "비트코인 (BTC)",
+    "KRW-ETH": "이더리움 (ETH)",
+    "KRW-XRP": "리플 (XRP)",
+    "KRW-DOT": "폴카닷 (DOT)",
+    "KRW-ADA": "에이다 (ADA)",
+  };
 
   useEffect(() => {
         console.log("✅ 최종 업데이트된 잔고:", balance);
@@ -63,7 +71,7 @@ export default function TradeGame({
       {/* 코인 이름 & 가격 */}
       <div className="coin-detail-header">
         <div className="coin-detail-name">
-          {selectedCoinKey || '선택된 코인 없음'}
+          {cryptoNames[selectedCoinKey] || '선택된 코인 없음'}
         </div>
         <div className="coin-detail-price">
           {selectedCoin.toLocaleString() + '원' || '가격 없음'}
