@@ -33,6 +33,7 @@ const RUComponent = ({ tradeData, balance, setBalance, setPositionArray }) => {
         balance={balance}
         setBalance={setBalance}
         setPositionArray={setPositionArray}
+        selectedCoinKey={selectedCoinKey}
       ></Trade>
       {/* <RULComponent/> */}
       <CornerList />

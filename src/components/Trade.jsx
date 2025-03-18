@@ -10,11 +10,11 @@ export default function TradeGame({
   balance,
   setBalance,
   setPositionArray,
+  selectedCoinKey
 }) {
   // console.log("📌 최신 코인 데이터:", tradeData);
 
   // ✅ 선택된 코인 Key와 가격 상태 관리
-  const [selectedCoinKey, setSelectedCoinKey] = useState('KRW-BTC'); // 기본값: 비트코인
   const [selectedCoin, setSelectedCoin] = useState(
     tradeData['KRW-BTC']?.trade_price || 0
   );
@@ -57,22 +57,9 @@ export default function TradeGame({
   };
 
   return (
+
     <Container className="selected-coin-details pixel-borders-thin">
-      {/* 🔥 실시간 코인 선택 드롭다운 */}
-      <div className="form-row">
-        <label className="form-label">SELECT COIN:</label>
-        <select
-          className="quantity-input"
-          value={selectedCoinKey}
-          onChange={(e) => setSelectedCoinKey(e.target.value)}
-        >
-          {Object.keys(tradeData).map((coin) => (
-            <option key={coin} value={coin}>
-              {coin}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className="selected-coin-details pixel-borders-thin">
       {/* 코인 이름 & 가격 */}
       <div className="coin-detail-header">
         <div className="coin-detail-name">
@@ -110,6 +97,7 @@ export default function TradeGame({
         >
           SELL
         </button>
+      </div>
       </div>
     </Container>
   );
