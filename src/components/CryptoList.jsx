@@ -8,7 +8,6 @@ const Container = styled.div`
   border: 3px solid #008485;
   font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
-  overflow-y: scroll;
 `;
 
 const SelectedCoinHeader = styled.div`
