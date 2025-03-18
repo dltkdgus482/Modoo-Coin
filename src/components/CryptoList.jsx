@@ -1,5 +1,5 @@
-
-import React, { useEffect } from 'react';
+// Libraries
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -8,6 +8,7 @@ const Container = styled.div`
   border: 3px solid #008485;
   // font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
+  overflow-y: auto;
 `;
 
 const SelectedCoinHeader = styled.div`
@@ -22,7 +23,7 @@ const SelectedCoinHeader = styled.div`
 `;
 
 const CoinListContainer = styled.div`
-  border: 2px solid var(--hana-primary);
+  // border: 2px solid var(--hana-primary);
   background-color: #fff;
   height: 180px;
   overflow-y: auto;
@@ -39,7 +40,7 @@ const CoinListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 2px solid var(--hana-light);
+  // border-bottom: 2px solid var(--hana-light);
   font-size: 10px;
   cursor: pointer;
   transition: background-color 0.1s;

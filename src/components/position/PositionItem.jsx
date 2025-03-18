@@ -32,11 +32,12 @@
 
   // Styled Components
   const Container = styled.div`
-    width: 40%;
+    width: 98%;
     min-width: 140px;
-    height: 85%;
+    min-height: 55px;
+    max-height: 55px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     border: 2px solid #008485;
@@ -46,8 +47,8 @@
 
   const Button = styled.button`
     cursor: pointer;
-    width: 80%;
-    height: 20%;
+    width: 15%;
+    height: 40%;
     color: white;
     border: none;
     border-radius: 5px;
