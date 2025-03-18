@@ -26,4 +26,3 @@ export const closePosition = (benefit,balance,entryPrice) => {
       curBalance
   };
 }
-

@@ -1,3 +1,6 @@
+// Libraries
+import styled from 'styled-components';
+
 import React, { useState, useEffect } from 'react';
 import { enterPosition } from '../utils/trade'; // ✅ trade.js import
 import '../styles/Trade.css'; // ✅ CSS 파일 추가
@@ -54,7 +57,7 @@ export default function TradeGame({
   };
 
   return (
-    <div className="selected-coin-details pixel-borders-thin">
+    <Container className="selected-coin-details pixel-borders-thin">
       {/* 🔥 실시간 코인 선택 드롭다운 */}
       <div className="form-row">
         <label className="form-label">SELECT COIN:</label>
@@ -108,6 +111,13 @@ export default function TradeGame({
           SELL
         </button>
       </div>
-    </div>
+    </Container>
   );
 }
+
+// Styled Components
+const Container = styled.div`
+  width: 92%;
+  height: 44%;
+  border: 3px solid #008485;
+`;

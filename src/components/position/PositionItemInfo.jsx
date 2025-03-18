@@ -16,3 +16,20 @@ const PositionItemInfo = ({ position,benefit}) => {
 };
 
 export default PositionItemInfo;
+
+// Styled Components
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  heigth: 100%;
+`;

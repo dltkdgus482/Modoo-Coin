@@ -25,14 +25,14 @@ const Container = styled.div`
   width: 100%;
   height: 80%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   gap: min(2%, 20px);
-  overflow-x: scroll;
-  
+  overflow-y: scroll;
+
   // IE, Firefox 제외 스크롤바 디자인
   &::-webkit-scrollbar {
-    height: 4px;
+    width: 4px;
     bottom: 0px;
   }
 
@@ -41,7 +41,7 @@ const Container = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background: #E9F2F1;
+    background: #e9f2f1;
   }
   // IE, Firefox 스크롤바 디자인
 `;
