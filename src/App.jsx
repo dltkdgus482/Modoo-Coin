@@ -8,11 +8,14 @@ import { UpbitWebSocket } from "./utils/cryptoInfo";
 import UserContainer from './components/user/UserContainer';
 import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
+import Trade from './components/Trade';
 
 import React, { useState,useEffect } from "react";
 
 function App() {
   const [tradeData, setTradeData] = useState({});
+  const [balance, setBalance] = useState(1000000000);
+  
 
   useEffect(() => {
     const upbitWS = new UpbitWebSocket(["KRW-BTC", "KRW-ETH", "KRW-XRP", "KRW-DOT", "KRW-ADA"]);
@@ -42,7 +45,7 @@ function App() {
     <Container>
       <UpperContainer>
         <UserContainer />
-        <RUComponent tradeData={tradeData} />
+        <RUComponent tradeData={tradeData} balance={balance} setBalance={setBalance}/>
       </UpperContainer>
       <PositionContainer />
     </Container>

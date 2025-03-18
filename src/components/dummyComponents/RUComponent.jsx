@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import CryptoList from '../CryptoList';
 import RULComponent from './RULComponent';
 import CornerList from '../corner/CornerList';
+import Trade from '../../components/Trade'
 import { useState } from 'react';
 
 // 캐릭터 정보 창이 위치할 더미 컴포넌트입니다.
-const RUComponent = ({ tradeData }) => {
+const RUComponent = ({ tradeData,balance,setBalance }) => {
   const [selectedCoinKey, setSelectedCoinKey] = useState("KRW-BTC");
   
   const onSetSelectedCoin = ((code) => {
@@ -19,7 +20,8 @@ const RUComponent = ({ tradeData }) => {
     <Container>
       <CryptoList tradeData={tradeData} updateSelectedCoin={onSetSelectedCoin} selectedCoinKey={selectedCoinKey} />
       {/* <Chart selectedTreadeData={tradeData[selectedCoinKey]} /> */}
-      <RULComponent />
+      <Trade tradeData={tradeData} balance={balance} setBalance={setBalance}></Trade>
+      {/* <RULComponent/> */}
       <CornerList />
     </Container>
   );
