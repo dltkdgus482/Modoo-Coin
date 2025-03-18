@@ -19,7 +19,7 @@ function App() {
   const [tradeData, setTradeData] = useState({});
   const [balance, setBalance] = useState(1000000000);
   const [positionArray, setPositionArray] = useState(
-    positionData.length ? positionData : []
+    []
   );
 
   useEffect(() => {

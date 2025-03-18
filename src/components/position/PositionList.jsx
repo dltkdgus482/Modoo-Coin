@@ -1,10 +1,14 @@
 // Libraries
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 // Components
 import PositionItem from './PositionItem';
 
 const PositionList = ({ positionArray }) => {
+  useEffect(() => {
+    console.log('현재 포지션 업데이트')
+  }, [positionArray])
   return (
     <Container>
       {positionArray.map((position, idx) => {

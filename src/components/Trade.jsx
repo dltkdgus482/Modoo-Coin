@@ -44,14 +44,11 @@ export default function TradeGame({
     }
     console.log('현재 잔고' + balance);
     const position = enterPosition(coinType, action, price, quantity, balance);
-    if (position.error) {
-      alert(position.error);
-      return;
-    }
+    console.log("포지션"+position)  
 
     console.log(JSON.stringify(position, null, 2));
-    setBalance(position.updatedBalance);
-    setPositions([...positions, position]);
+    setBalance(balance - (quantity * price));
+    setPositionArray(prevPositions => [...prevPositions, position]);
   };
 
   return (

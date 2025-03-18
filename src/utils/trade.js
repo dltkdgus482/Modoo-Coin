@@ -20,8 +20,7 @@ export function enterPosition (coinType, action, enterPrice, quantity, currentBa
         coinName: coinType, 
         entryPrice: enterPrice,
         quantity : quantity,
-        orderType: action,
-        updatedBalance
+        orderType: action
     };
 }
 /**
