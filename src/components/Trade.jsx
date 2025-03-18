@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { enterPosition, closePosition } from '../utils/trade'; // ✅ trade.js import
+import { enterPosition } from '../utils/trade'; // ✅ trade.js import
 import '../styles/Trade.css'; // ✅ CSS 파일 추가
 
 export default function TradeGame({

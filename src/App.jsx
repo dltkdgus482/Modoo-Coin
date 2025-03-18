@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
+import { calBenefit } from './utils/trade'
 
 // Components
 import UserContainer from './components/user/UserContainer';
@@ -18,9 +19,7 @@ import React, { useState, useEffect } from 'react';
 function App() {
   const [tradeData, setTradeData] = useState({});
   const [balance, setBalance] = useState(1000000000);
-  const [positionArray, setPositionArray] = useState(
-    []
-  );
+  const [positionArray, setPositionArray] = useState([]);
 
   useEffect(() => {
     const upbitWS = new UpbitWebSocket([
@@ -64,6 +63,7 @@ function App() {
         />
       </UpperContainer>
       <PositionContainer
+        tradeData={tradeData}
         positionArray={positionArray}
         setPositionArray={setPositionArray}
       />

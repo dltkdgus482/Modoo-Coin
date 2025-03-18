@@ -6,12 +6,14 @@ import styled from 'styled-components';
 
 // Components
 import PositionItemInfo from './PositionItemInfo';
+import { calBenefit } from '../../utils/trade';
 
-const PositionItem = ({ position }) => {
+const PositionItem = ({ position, tradeData }) => {
+  const benefit = calBenefit(position,tradeData);
   return (
     <Container>
-      <PositionItemInfo position={position} />
-      <Button onClick={() => closePosition()}>Close</Button>
+      <PositionItemInfo position={position} benefit={benefit}/>
+      <Button onClick={() => closePosition(benefit)}>Close</Button>
     </Container>
   );
 };
