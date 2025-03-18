@@ -1,8 +1,4 @@
-// DummyData
-import { positionData } from '../../mocks/dummyData';
-
 // Libraries
-import { useState } from 'react';
 import styled from 'styled-components';
 
 // Components
@@ -10,9 +6,7 @@ import PositionHeader from './PositionHeader';
 import PositionList from './PositionList';
 import CornerList from '../corner/CornerList';
 
-const PositionContainer = () => {
-  const [positionArray, setPositionArray] = useState(positionData);
-
+const PositionContainer = ({ positionArray, setPositionArray }) => {
   return (
     <Container>
       <PositionHeader setPositionArray={setPositionArray} />
@@ -32,6 +26,6 @@ const Container = styled.div`
   position: relative;
   flex-direction: column;
   border: 3px solid black;
-  background-color: #E9F2F1;
+  background-color: #e9f2f1;
   padding: 1%;
 `;
