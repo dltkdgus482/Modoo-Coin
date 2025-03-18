@@ -1,19 +1,17 @@
 // Libraries
-import styled from 'styled-components';
+import styled from "styled-components";
+import { closePosition } from "../../utils/positionUtils";
+import { calBenefit } from "../../utils/trade";
 
-const PositionItemInfo = ({ position }) => {
+const PositionItemInfo = ({ position,benefit}) => {
   return (
-    <Container>
-      <InnerContainer>
-        <p>{position.coinName}</p>
-        <p>{position.orderType}</p>
-      </InnerContainer>
-      <p>{position.quantity}</p>
-      <p>{position.entryPrice.toLocaleString()}</p>
-      <p>현재가</p>
+    <>
+      <p>{position.coinName}</p>
+      <p>{position.quantity}</p>  
+      <p>{(position.entryPrice || 0).toLocaleString()} $</p>
       <p>{position.orderType}</p>
-      <p>profit</p>
-    </Container>
+      <p>profit: {benefit} $</p>
+    </>
   );
 };
 
