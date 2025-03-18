@@ -6,11 +6,11 @@ import PositionHeader from './PositionHeader';
 import PositionList from './PositionList';
 import CornerList from '../corner/CornerList';
 
-const PositionContainer = ({ tradeData, positionArray, setPositionArray }) => {
+const PositionContainer = ({ tradeData, balance, setBalance, positionArray, setPositionArray }) => {
   return (
     <Container>
       <PositionHeader setPositionArray={setPositionArray} />
-      <PositionList positionArray={positionArray} tradeData={tradeData}/>
+      <PositionList positionArray={positionArray} tradeData={tradeData} balance={balance} setBalance={setBalance} setPositionArray={setPositionArray}/>
       <CornerList />
     </Container>
   );

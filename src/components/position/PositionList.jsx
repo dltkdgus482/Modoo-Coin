@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 // Components
 import PositionItem from './PositionItem';
 
-const PositionList = ({ positionArray, tradeData }) => {
+const PositionList = ({ positionArray, tradeData, balance, setBalance, setPositionArray }) => {
   useEffect(() => {
     console.log('현재 포지션 업데이트')
   }, [positionArray])
   return (
     <Container>
       {positionArray.map((position, idx) => {
-        return <PositionItem key={idx} position={position} tradeData={tradeData} />;
+        return <PositionItem key={idx} position={position} tradeData={tradeData} balance={balance} setBalance={setBalance} positionArray={positionArray} setPositionArray={setPositionArray}/>;
       })}
     </Container>
   );

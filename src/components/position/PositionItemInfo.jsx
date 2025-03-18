@@ -7,8 +7,8 @@ const PositionItemInfo = ({ position,benefit}) => {
   return (
     <>
       <p>{position.coinName}</p>
-      <p>{position.quantity}</p>
-      <p>{position.entryPrice.toLocaleString()} $</p>
+      <p>{position.quantity}</p>  
+      <p>{(position.entryPrice || 0).toLocaleString()} $</p>
       <p>{position.orderType}</p>
       <p>profit: {benefit} $</p>
     </>

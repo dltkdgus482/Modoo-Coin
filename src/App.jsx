@@ -64,6 +64,8 @@ function App() {
       </UpperContainer>
       <PositionContainer
         tradeData={tradeData}
+        balance={balance}
+        setBalance={setBalance}
         positionArray={positionArray}
         setPositionArray={setPositionArray}
       />

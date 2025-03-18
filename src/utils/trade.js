@@ -13,7 +13,7 @@ export function enterPosition (coinName, orderType, entryPrice, quantity, curren
     
     if (updatedBalance < 0) {
         return { error: "잔고 부족"};
-       }
+    }
     
     return {
         entryDate : timestamp,
@@ -28,16 +28,22 @@ export function enterPosition (coinName, orderType, entryPrice, quantity, curren
  * 이윤 계산 함수 
  * @param {Object} position - 포지션
  * @param {Object} tradeData - 현재 시장가
- * @returns {String} - 이윤
+ * @returns {number} - 이윤
  */
-
 export function calBenefit ( position, tradeData) {
     // ✅ 현재 코인의 실시간 가격 찾기
   const currentPrice = tradeData[position.coinName]?.trade_price || " ... $";
-  // ✅ 현재 코인의 실시간 수익 계산
-  const currentBenefit = position.orderType == "long" ? 
+  let currentBenefit = 0;
+    // ✅ 현재 코인의 실시간 수익 계산  
+  if(currentPrice){
+    currentBenefit += position.orderType == "long" ? 
     (position.entryPrice * position.quantity) - (currentPrice * position.quantity) : 
       (currentPrice * position.quantity) - (position.entryPrice * position.quantity);
+  }
 
-    return currentBenefit.toLocaleString();
+    return currentBenefit;
+}
+
+export function getEntryPrice ( position ) {
+    return (position.entryPrice * position.quantity);
 }

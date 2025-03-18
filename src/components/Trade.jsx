@@ -16,7 +16,10 @@ export default function TradeGame({
     tradeData['KRW-BTC']?.trade_price || 0
   );
   const [quantity, setQuantity] = useState(0.1); // 기본값: 0.1개
-  const [positions, setPositions] = useState([]); // 포지션 목록
+
+  useEffect(() => {
+        console.log("✅ 최종 업데이트된 잔고:", balance);
+    }, [balance]); // ✅ balance가 변경될 때만 실행
 
   // ✅ tradeData가 업데이트될 때마다 선택된 코인의 가격을 자동으로 갱신
   useEffect(() => {
@@ -25,14 +28,11 @@ export default function TradeGame({
     }
   }, [tradeData, selectedCoinKey]); // tradeData 또는 selectedCoinKey가 변경될 때 실행
 
-  useEffect(() => {
-    console.log('📌 현재 포지션 목록:', positions);
-  }, [positions]); // positions 배열이 변경될 때마다 실행
-
   // ✅ 포지션 진입 (롱 or 숏)
   const handleEnter = (action, quantity) => {
     const coinType = selectedCoinKey; // ✅ 선택된 코인 키 사용
     const price = selectedCoin; // ✅ 현재 가격 사용
+    const totalCost = price * quantity;
 
     if (!coinType || price <= 0) {
       alert('코인을 먼저 선택해주세요!');
@@ -42,12 +42,14 @@ export default function TradeGame({
       alert('수량을 입력해주세요!');
       return;
     }
-    console.log('현재 잔고' + balance);
+    if(totalCost > balance) {
+        alert("🚨 잔고가 부족합니다! 현재 잔고: " + balance.toLocaleString() + "원");
+        return; // 🚀 여기서 return하면 포지션이 생성되지 않음!
+    }
+    console.log('✅ 현재 잔고' + balance);
     const position = enterPosition(coinType, action, price, quantity, balance);
-    console.log("포지션"+position)  
-
-    console.log(JSON.stringify(position, null, 2));
-    setBalance(balance - (quantity * price));
+    
+    setBalance(balance - (price * quantity));
     setPositionArray(prevPositions => [...prevPositions, position]);
   };
 
