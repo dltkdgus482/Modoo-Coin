@@ -10,7 +10,10 @@ const PositionContainer = ({ positionArray, setPositionArray }) => {
   return (
     <Container>
       <PositionHeader setPositionArray={setPositionArray} />
-      <PositionList positionArray={positionArray} />
+      <PositionList
+        positionArray={positionArray}
+        setPositionArray={setPositionArray}
+      />
       <CornerList />
     </Container>
   );
@@ -20,7 +23,7 @@ export default PositionContainer;
 
 // Styled Components
 const Container = styled.div`
-  width: 68%;
+  width: 70%;
   height: 26%;
   display: flex;
   position: relative;

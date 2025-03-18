@@ -1,17 +1,14 @@
-// Utils
-import { closePosition } from '../../utils/positionUtils';
-
 // Libraries
 import styled from 'styled-components';
 
 // Components
 import PositionItemInfo from './PositionItemInfo';
 
-const PositionItem = ({ position }) => {
+const PositionItem = ({ position, handleClose }) => {
   return (
     <Container>
       <PositionItemInfo position={position} />
-      <Button onClick={() => closePosition()}>Close</Button>
+      <Button onClick={handleClose}>Close</Button>
     </Container>
   );
 };
@@ -20,22 +17,24 @@ export default PositionItem;
 
 // Styled Components
 const Container = styled.div`
-  width: 40%;
-  min-width: 140px;
-  height: 85%;
+  width: 92%;
+  min-height: 30%;
+  max-height: 30%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   border: 2px solid #008485;
   box-shadow: 4px 4px 10px rgba(0, 132, 133, 0.2);
   background-color: white;
+  margin: 0 2%;
+  padding: 0 2%;
 `;
 
 const Button = styled.button`
   cursor: pointer;
-  width: 80%;
-  height: 20%;
+  width: 20%;
+  height: 80%;
   color: white;
   border: none;
   border-radius: 5px;

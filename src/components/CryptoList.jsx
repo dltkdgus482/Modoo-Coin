@@ -6,7 +6,7 @@ const Container = styled.div`
   width: 92%;
   height: 44%;
   border: 3px solid #008485;
-  font-family: 'Press Start 2P', cursive;
+  // font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
   overflow-y: scroll;
 `;

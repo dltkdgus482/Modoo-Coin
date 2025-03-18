@@ -7,11 +7,3 @@
 export const customSort = (data, key, order = "asc") => {
 
 }
-
-/**
- * 
- * 
- */
-export const closePosition = () => {
-  console.log("closePosition");
-}
