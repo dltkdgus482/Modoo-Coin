@@ -16,12 +16,12 @@ export function enterPosition (coinType, action, enterPrice, quantity, currentBa
        }
     
     return {
-        coinType,
-        action,
-        enterPrice,
-        quantity,
-        updatedBalance,
-        timestamp
+        entryDate : timestamp,
+        coinName: coinType, 
+        entryPrice: enterPrice,
+        quantity : quantity,
+        orderType: action,
+        updatedBalance
     };
 }
 /**

@@ -1,6 +1,5 @@
 
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -87,15 +86,12 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
   return (
     <Container>
       <SelectedCoinHeader>
-
         <div>{cryptoNames[selectedCoinKey] || selectedCoinKey}</div>
         <div>{selectedCoin.trade_price.toLocaleString()} KRW</div>
-
       </SelectedCoinHeader>
 
       <CoinListContainer>
         <CoinListUL>
-
           {Object.entries(cryptoNames).map(([code, name]) => {
             const info = tradeData[code];
             return (
@@ -110,7 +106,6 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
               </CoinListItem>
             );
           })}
-
         </CoinListUL>
       </CoinListContainer>
     </Container>

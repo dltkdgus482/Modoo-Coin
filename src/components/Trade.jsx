@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { enterPosition, closePosition } from "../utils/trade"; // ✅ trade.js import
 import "../styles/Trade.css"; // ✅ CSS 파일 추가
 
-export default function TradeGame({ currentBalance, setBalance, tradeData }) {
-    console.log("📌 최신 코인 데이터:", tradeData);
+export default function TradeGame({ tradeData, balance, setBalance }) {
+    // console.log("📌 최신 코인 데이터:", tradeData);
 
     // ✅ 선택된 코인 Key와 가격 상태 관리
     const [selectedCoinKey, setSelectedCoinKey] = useState("KRW-BTC"); // 기본값: 비트코인
@@ -18,9 +18,15 @@ export default function TradeGame({ currentBalance, setBalance, tradeData }) {
         }
     }, [tradeData, selectedCoinKey]); // tradeData 또는 selectedCoinKey가 변경될 때 실행
 
+    useEffect(() => {
+        console.log("📌 현재 포지션 목록:", positions);
+    }, [positions]); // positions 배열이 변경될 때마다 실행
     
     // ✅ 포지션 진입 (롱 or 숏)
-    const handleEnter = (coinType, action, price, quantity) => {
+    const handleEnter = (action,quantity) => {
+        const coinType = selectedCoinKey; // ✅ 선택된 코인 키 사용
+        const price = selectedCoin; // ✅ 현재 가격 사용
+
         if (!coinType || price <= 0) {
             alert("코인을 먼저 선택해주세요!");
             return;
@@ -29,8 +35,8 @@ export default function TradeGame({ currentBalance, setBalance, tradeData }) {
             alert("수량을 입력해주세요!");
             return;
         }
-
-        const position = enterPosition(coinType, action, price, quantity, currentBalance);
+        console.log("현재 잔고"+balance);
+        const position = enterPosition(coinType, action, price, quantity, balance);
         if (position.error) {
             alert(position.error);
             return;
@@ -79,13 +85,13 @@ export default function TradeGame({ currentBalance, setBalance, tradeData }) {
             <div className="trading-controls">
                 <button 
                     className="trade-button buy-button"
-                    onClick={() => handleEnter(selectedCoin.coinType, "long", selectedCoin.price, quantity)}
+                    onClick={() => handleEnter( "long", quantity)}
                 >
                     BUY
                 </button>
                 <button 
                     className="trade-button sell-button"
-                    onClick={() => handleEnter(selectedCoin.coinType, "short", selectedCoin.price, quantity)}
+                    onClick={() => handleEnter("short", quantity)}
                 >
                     SELL
                 </button>
