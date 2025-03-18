@@ -5,12 +5,14 @@ import { useState, useEffect } from 'react';
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
 
-// Components
+// Other Components
+import Modal from './components/modal/Modal';
 import UserContainer from './components/user/UserContainer';
 import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 
 function App() {
+  const [isVisible, setIsVisible] = useState(true);
   const [tradeData, setTradeData] = useState({});
   const [balance, setBalance] = useState(1000000000);
   const [positionArray, setPositionArray] = useState([]);
@@ -46,24 +48,27 @@ function App() {
   }, []);
 
   return (
-    <Container>
-      <UpperContainer>
-        <UserContainer />
-        <RUComponent
+    <>
+      <Container>
+        <UpperContainer>
+          <UserContainer />
+          <RUComponent
+            tradeData={tradeData}
+            balance={balance}
+            setBalance={setBalance}
+            setPositionArray={setPositionArray}
+          />
+        </UpperContainer>
+        <PositionContainer
           tradeData={tradeData}
           balance={balance}
           setBalance={setBalance}
+          positionArray={positionArray}
           setPositionArray={setPositionArray}
         />
-      </UpperContainer>
-      <PositionContainer
-        tradeData={tradeData}
-        balance={balance}
-        setBalance={setBalance}
-        positionArray={positionArray}
-        setPositionArray={setPositionArray}
-      />
-    </Container>
+      </Container>
+      {isVisible && <Modal setIsVisible={setIsVisible} />}
+    </>
   );
 }
 
