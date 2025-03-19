@@ -1,23 +1,23 @@
   // Utils
   import { closePosition } from '../../utils/positionUtils';
+  import { calBenefit } from '../../utils/positionUtils';
 
   // Libraries
   import styled from 'styled-components';
 
   // Components
   import PositionItemInfo from './PositionItemInfo';
-  import { calBenefit,getEntryPrice } from '../../utils/trade';
 
-  const PositionItem = ({ position, tradeData, balance, setBalance, positionArray, setPositionArray }) => {
+  const PositionItem = ({ position, tradeData, balance, setBalance, positionArray, setPositionArray, setTradeDataHistory }) => {
     const benefit = calBenefit(position,tradeData);
-    const entryPrice = getEntryPrice( position,tradeData);
     // ✅ 포지션 정리 버튼 클릭 핸들러
     const handleClosePosition = () => {
-      const result = closePosition(benefit, balance, entryPrice); // ✅ 새 잔고 값 반환
-      setBalance(result.curBalance); // ✅ `setBalance` 실행
+      const result = closePosition(balance, position, tradeData,benefit); // ✅ 청산 후 히스토리 반환
+      setBalance(result.curBalance); // ✅ 잔고 업데이트
       console.log("✅ 청산 후 현재잔고 : " + result.curBalance);
-      // ✅ 현재 배열에서 선택한 포지션 제거
+      // ✅ 현재 배열에서 선택한 포지션 제거 및 히스토리 생성
       setPositionArray(positionArray.filter(pos => pos !== position));
+      setTradeDataHistory((prevHistory) => [...prevHistory, result]);
     };
     
     return (

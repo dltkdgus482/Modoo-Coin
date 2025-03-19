@@ -10,6 +10,7 @@ const PositionList = ({
   balance,
   setBalance,
   setPositionArray,
+  setTradeDataHistory,
 }) => {
   return (
     <Container>
@@ -23,6 +24,7 @@ const PositionList = ({
             setBalance={setBalance}
             positionArray={positionArray}
             setPositionArray={setPositionArray}
+            setTradeDataHistory={setTradeDataHistory}
           />
         );
       })}

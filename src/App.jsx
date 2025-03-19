@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
+import { generateFakeData } from './utils/coinGenerate';
 
 // Other Components
 import Modal from './components/modal/Modal';
@@ -12,10 +13,29 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 
 function App() {
+  // ✅ 초기 로컬 스토리지 데이터 불러오기
+  const initialBalance = Number(localStorage.getItem('balance')) || 1000000000;
+  const initialPositions = JSON.parse(localStorage.getItem('positionArray')) || [];
+  const initialTradeHistory = JSON.parse(localStorage.getItem('tradeDataHistory')) || [];
+
   const [isVisible, setIsVisible] = useState(true);
   const [tradeData, setTradeData] = useState({});
-  const [balance, setBalance] = useState(1000000000);
-  const [positionArray, setPositionArray] = useState([]);
+  const [tradeDataHistory, setTradeDataHistory] = useState(initialTradeHistory);
+  const [balance, setBalance] = useState(initialBalance);
+  const [positionArray, setPositionArray] = useState(initialPositions);
+
+  // ✅ balance가 변경될 때마다 저장
+  useEffect(() => {
+    localStorage.setItem("balance", balance);
+  }, [balance]);
+  // ✅ position 변경될 때마다 저장
+  useEffect(() => {
+    localStorage.setItem("positionArray", JSON.stringify(positionArray));
+  }, [positionArray]);
+  // ✅ history 변경될 때마다 저장
+  useEffect(() => {
+    localStorage.setItem("tradeDataHistory", JSON.stringify(tradeDataHistory));
+  }, [tradeDataHistory]);
 
   useEffect(() => {
     const upbitWS = new UpbitWebSocket([
@@ -25,7 +45,7 @@ function App() {
       'KRW-DOT',
       'KRW-ADA',
     ]);
-
+      
     const handleTradeData = (data) => {
       setTradeData((prevData) => ({
         ...prevData,
@@ -41,9 +61,18 @@ function App() {
 
     upbitWS.subscribeToData(handleTradeData);
 
+    // 1초마다 가상의 데이터 추가
+  const fakeDataInterval = setInterval(() => {
+    setTradeData((prevData) => ({
+      ...prevData,
+      ...generateFakeData(), // ✅ Upbit 데이터 + 가상 데이터 추가
+    }));
+  }, 1000);
+
     return () => {
       upbitWS.unsubscribeFromData(handleTradeData);
       upbitWS.close();
+      clearInterval(fakeDataInterval); // ✅ 가상 데이터 업데이트 중지
     };
   }, []);
 
@@ -65,6 +94,7 @@ function App() {
           setBalance={setBalance}
           positionArray={positionArray}
           setPositionArray={setPositionArray}
+          setTradeDataHistory={setTradeDataHistory}
         />
       </Container>
       {isVisible && <Modal setIsVisible={setIsVisible} />}

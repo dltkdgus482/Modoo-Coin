@@ -43,7 +43,7 @@ const Trade = ({
       quantity,
       balance
     );
-
+    
     setBalance(balance - selectedCoin * quantity);
     setPositionArray((prevPositions) => [...prevPositions, position]);
   };

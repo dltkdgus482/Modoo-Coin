@@ -72,6 +72,7 @@ const cryptoNames = {
   "KRW-XRP": "리플 (XRP)",
   "KRW-DOT": "폴카닷 (DOT)",
   "KRW-ADA": "에이다 (ADA)",
+  "KRW-POT": "폴텍코 (PTC)"
 };
 
 const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {

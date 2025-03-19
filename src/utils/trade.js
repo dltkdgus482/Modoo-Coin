@@ -23,27 +23,3 @@ export function enterPosition (coinName, orderType, entryPrice, quantity, curren
         orderType,
     };
 }
-
-/**
- * 이윤 계산 함수 
- * @param {Object} position - 포지션
- * @param {Object} tradeData - 현재 시장가
- * @returns {number} - 이윤
- */
-export function calBenefit ( position, tradeData) {
-    // ✅ 현재 코인의 실시간 가격 찾기
-  const currentPrice = tradeData[position.coinName]?.trade_price || " ... $";
-  let currentBenefit = 0;
-    // ✅ 현재 코인의 실시간 수익 계산  
-  if(currentPrice){
-    currentBenefit += position.orderType == "long" ? 
-    (position.entryPrice * position.quantity) - (currentPrice * position.quantity) : 
-      (currentPrice * position.quantity) - (position.entryPrice * position.quantity);
-  }
-
-    return currentBenefit;
-}
-
-export function getEntryPrice ( position ) {
-    return (position.entryPrice * position.quantity);
-}
