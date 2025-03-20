@@ -60,3 +60,4 @@ export function getCurrentPrice ( position, tradeData ) {
   const currentPrice = tradeData[position.coinName]?.trade_price || " ... $";
   return currentPrice;
 }
+

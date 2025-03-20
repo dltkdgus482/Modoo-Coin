@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 // Utils
 import { enterPosition } from '../utils/trade'; // ✅ trade.js import
 import { isValid } from '../utils/tradeUtils';
+import { enterPositionLog } from '../utils/logUtils';
 
 // Styles
 import '../styles/Trade.css';
@@ -19,6 +20,7 @@ const Trade = ({
   setBalance,
   setPositionArray,
   selectedCoinKey,
+  setLogData
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedCoin, setSelectedCoin] = useState(
@@ -30,6 +32,7 @@ const Trade = ({
       setSelectedCoin(tradeData[selectedCoinKey].trade_price);
     }
   }, [tradeData, selectedCoinKey]);
+
 
   const handleEnter = (action) => {
     if (!isValid(selectedCoin, selectedCoinKey, quantity, balance)) {
@@ -43,7 +46,9 @@ const Trade = ({
       quantity,
       balance
     );
-    
+    let log = enterPositionLog(position);
+    //console.log(log);
+    setLogData((prevLog) => [...prevLog,log]);
     setBalance(balance - selectedCoin * quantity);
     setPositionArray((prevPositions) => [...prevPositions, position]);
   };
