@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HistoryModal = ({ onClose, tradeDataHistory }) => {
+const HistoryModal = ({ onClose, tradeDataHistory, setTradeDataHistory }) => {
 
     const createHistory = (trade, index) => {
         const parsedDate = new Date(trade.clearTime);
@@ -35,10 +35,13 @@ const HistoryModal = ({ onClose, tradeDataHistory }) => {
   return (
     <Overlay>
       <ModalBox>
-        <Header>
-          <span>📜 Trade History</span>
-          <CloseBtn onClick={onClose}>❌</CloseBtn>
-        </Header>
+      <Header>
+        <span>📜 Trade History</span>
+        <HeaderButtons>
+            <ClearBtn onClick={() => setTradeDataHistory([])}>🧹 Clear</ClearBtn>
+            <CloseBtn onClick={onClose}>❌</CloseBtn>
+        </HeaderButtons>
+    </Header>
         
         <Content>
           {tradeDataHistory.length > 0 ? (
@@ -119,4 +122,25 @@ const CloseBtn = styled.button`
   border: none;
   font-size: 14px;
   cursor: pointer;
+`;
+
+const HeaderButtons = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const ClearBtn = styled.button`
+  background-color:rgb(142, 160, 147);
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
+
+  &:hover {
+    background-color:rgb(60, 114, 82);
+  }
 `;

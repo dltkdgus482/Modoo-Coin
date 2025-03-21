@@ -1,5 +1,5 @@
 export const generateFakeData = () => {
-    let basePrice = 50000000; // 기본 가격
+    let basePrice = 100000000; // 기본 가격
     let changeRate = (Math.random() * 0.1) - 0.05; // 일반적인 변동 ±5% ~ 10%
   
     // 🎯 특정 확률로 급등(펌핑) 또는 급락(덤핑) 이벤트 발생

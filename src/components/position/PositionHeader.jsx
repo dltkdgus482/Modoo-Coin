@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // Modal
 import HistoryModal from '../modal/HistoryModal.jsx';
 
-const PositionHeader = ({tradeDataHistory}) => {
+const PositionHeader = ({tradeDataHistory, setTradeDataHistory}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClick = () => {
@@ -17,7 +17,7 @@ const PositionHeader = ({tradeDataHistory}) => {
     <Container>
       <Header>My Positions</Header>
       <ClearButton onClick={handleClick}>My History</ClearButton>
-      {isModalOpen && <HistoryModal onClose={() => setIsModalOpen(false)} tradeDataHistory={tradeDataHistory} />}
+      {isModalOpen && <HistoryModal onClose={() => setIsModalOpen(false)} tradeDataHistory={tradeDataHistory} setTradeDataHistory={setTradeDataHistory}/>}
     </Container>
   );
 };
