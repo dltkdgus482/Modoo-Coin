@@ -1,21 +1,37 @@
+import { useRef } from 'react';
+
 // Libraries
 import styled from 'styled-components';
+import buySound from '@/assets/sounds/buy.mp3';
 
 // Utils
 import { lightenColor } from '../../utils/tradeUtils';
 
 const TradeButton = ({ handleEnter }) => {
+  const sound = useRef(new Audio(buySound));
+  sound.current.currentTime = 0;
+  const playSound = () => {
+    sound.current.currentTime = 0;
+    sound.current.play();
+  }
+
   return (
     <Container>
       <StyledButton
         style={{ backgroundColor: '#008485' }}
-        onClick={() => handleEnter('long')}
+        onClick={() => {
+          //playSound();
+          handleEnter('long');
+        }}
       >
         Long
       </StyledButton>
       <StyledButton
         style={{ backgroundColor: '#0072bc' }}
-        onClick={() => handleEnter('short')}
+        onClick={() => {
+          //playSound();
+          handleEnter('short');
+        }}
       >
         Short
       </StyledButton>
