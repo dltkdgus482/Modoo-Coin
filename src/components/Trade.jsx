@@ -1,6 +1,6 @@
 // Libraries
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Utils
 import { enterPosition } from '../utils/trade'; // ✅ trade.js import
@@ -38,7 +38,7 @@ const Trade = ({
     if (!isValid(selectedCoin, selectedCoinKey, quantity, balance)) {
       return;
     }
-
+    
     const position = enterPosition(
       selectedCoinKey,
       action,

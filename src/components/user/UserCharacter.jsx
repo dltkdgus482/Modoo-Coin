@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Assets
-import CharacterImage from '@/assets/images/character1.png'
+import CharacterImage from '@/assets/gifs/hana.gif';
 
 const UserCharacter = () => {
   return (
