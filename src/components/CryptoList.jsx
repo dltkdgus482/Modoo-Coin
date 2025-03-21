@@ -20,7 +20,7 @@ const SelectedCoinHeader = styled.div`
   align-items: center;
   background-color: var(--hana-primary);
 
-  color: #000000;
+  color: #ffffff;
   padding: 10px;
   font-size: 12px;
 `;
@@ -28,11 +28,12 @@ const SelectedCoinHeader = styled.div`
 const CoinListContainer = styled.div`
   // border: 2px solid var(--hana-primary);
   background-color: #fff;
-  height: 180px;
+  height: 100%;
   overflow-y: auto;
 `;
 
 const CoinListUL = styled.ul`
+  height: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
