@@ -14,23 +14,41 @@ const HistoryModal = ({ onClose, tradeDataHistory, setTradeDataHistory }) => {
           .toString()
           .padStart(2, '0')}:${parsedDate.getSeconds().toString().padStart(2, '0')}`;
       
+        const benefitValue = parseFloat(trade.benefit);
+        const isProfit = benefitValue >= 0;
+      
         return (
           <TradeItem key={index}>
-            🪙 코인 종류 : {trade.coinName} <br />
-            💰 진입가 : {parseInt(trade.entryPrice).toLocaleString()} <br />
-            🔄 청산가 : {parseInt(trade.clearPrice).toLocaleString()} <br />
-            {trade.benefit !== undefined && (
-              <>
-                {parseFloat(trade.benefit) >= 0
-                  ? `✅ 수익 : +${parseInt(trade.benefit).toLocaleString()}`
-                  : `❌ 손실 : -${parseInt(trade.benefit).toLocaleString()}`}
-              </>
-            )}
-            <br />
-            📅 청산일 : {formattedDate} 🕒 {formattedTime}
+            <div>
+              🪙 <strong>CoinName</strong> :{' '}
+              <Highlight>{trade.coinName}</Highlight>
+            </div>
+            <div>
+              💰 <strong>EnterPrice</strong> :{' '}
+              <Highlight>{parseInt(trade.entryPrice).toLocaleString()}</Highlight>
+            </div>
+            <div>
+              🔄 <strong>ClearPrice</strong> :{' '}
+              <Highlight>{parseInt(trade.clearPrice).toLocaleString()}</Highlight>
+            </div>
+            <div>
+              {trade.benefit !== undefined && (
+                <>
+                  {isProfit ? (
+                    <ProfitText>✅ Benefit : +{parseInt(trade.benefit).toLocaleString()}</ProfitText>
+                  ) : (
+                    <LossText>❌ Loss : {parseInt(trade.benefit).toLocaleString()}</LossText>
+                  )}
+                </>
+              )}
+            </div>
+            <div>
+              📅 Date : {formattedDate} 🕒 {formattedTime}
+            </div>
           </TradeItem>
         );
-      };        
+      };
+          
 
   return (
     <Overlay>
@@ -88,7 +106,7 @@ const ModalBox = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   margin-bottom: 12px;
 `;
@@ -106,10 +124,10 @@ const HistoryList = styled.div`
 `;
 
 const TradeItem = styled.div`
-  padding: 5px;
+  padding: 8px;
   border-bottom: 2px solid rgb(255, 255, 255);
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 10px;
+  font-weight: normale;
 `;
 
 const NoHistory = styled.p`
@@ -144,3 +162,19 @@ const ClearBtn = styled.button`
     background-color:rgb(60, 114, 82);
   }
 `;
+
+const Highlight = styled.span`
+  color: #1b1b1b;
+  font-weight: bold;
+`;
+
+const ProfitText = styled.span`
+  color: #1e8f3f;
+  font-weight: bold;
+`;
+
+const LossText = styled.span`
+  color: #b22222;
+  font-weight: bold;
+`;
+

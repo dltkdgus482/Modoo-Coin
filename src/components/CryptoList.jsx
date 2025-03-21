@@ -67,12 +67,12 @@ const Change = styled.span`
 
 
 const cryptoNames = {
-  "KRW-BTC": "비트코인 (BTC)",
-  "KRW-ETH": "이더리움 (ETH)",
-  "KRW-XRP": "리플 (XRP)",
-  "KRW-DOT": "폴카닷 (DOT)",
-  "KRW-ADA": "에이다 (ADA)",
-  "KRW-POT": "폴텍코 (PTC)"
+  "KRW-BTC": "BITCOIN",
+  "KRW-ETH": "ETHEREUM",
+  "KRW-XRP": "RIPPLE",
+  "KRW-DOT": "POLCADOT",
+  "KRW-ADA": "ADA",
+  "KRW-POT": "POLYCOIN"
 };
 
 const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {

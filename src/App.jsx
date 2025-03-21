@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     if (logData.length === 0) { // logData가 비어있을 때만 추가
-      let log = `😆 안녕하세요 ! --- 님 !\n`;
+      let log = `😆 HELLO !\n`;
       setLogData([{type:'start',content:log}]); // 처음 한 번만 실행
     }
   }, []);
@@ -123,6 +123,11 @@ export default App;
 
 // Styled Components
 const Container = styled.div`
+ * {
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', 'Pixelify Sans', monospace !important;
+  }
+
   width: 100vw;
   height: 100vh;
   display: flex;

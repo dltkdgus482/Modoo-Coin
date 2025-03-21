@@ -42,13 +42,13 @@
     `;
 
     const StyledLogItem = styled.pre`
-    margin: 6px 0;
-    padding: 8px;
-    font-size: 11px;
+    margin: 6px 1px ;
+    padding: 10px;
+    font-size: 8px;
     line-height: 1.6;
     white-space: pre-wrap;
     font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 6px;
     color: white;
 

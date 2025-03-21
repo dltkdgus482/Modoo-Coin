@@ -1,5 +1,5 @@
 export function createClearLog(result) {
-    const boxWidth = 70;// 전체 박스 너비
+    const boxWidth = 40;// 전체 박스 너비
     const contentWidth = boxWidth - 4; // 좌우 🟦 제외한 내용 너비
 
     const coinNameLine = `🪙 CoinName: ${result.coinName}`.padEnd(contentWidth, " ") + " ";
@@ -29,7 +29,7 @@ export function createClearLog(result) {
 
 
 export function updateBalance(balance) {
-    const boxWidth = 70; // 전체 박스 너비
+    const boxWidth = 40; // 전체 박스 너비
 
     const contentWidth = boxWidth - 4; // 좌우 🟩 제외한 내용 너비
 
@@ -45,7 +45,7 @@ export function updateBalance(balance) {
 }
 
 export function enterPositionLog(position) {
-    const boxWidth = 70; // 전체 박스 너비
+    const boxWidth = 40; // 전체 박스 너비
     const contentWidth = boxWidth - 4; // 좌우 🟨 제외한 내용 너비
 
     const coinNameLine = `🪙 CoinName: ${position.coinName}`.padEnd(contentWidth, " ") + " ";
