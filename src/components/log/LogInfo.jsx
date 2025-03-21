@@ -37,7 +37,6 @@
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    background-color: rgb(216, 231, 229);
     padding: 10px;
     `;
 
