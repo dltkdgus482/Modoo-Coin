@@ -131,11 +131,13 @@ function App() {
         </GameTitleBox>
       </Container>
 
+
       {isVisible &&
         <Modal
           setIsVisible={setIsVisible}
           setInputName={setInputName}
         />}
+
     </>
   );
 }
