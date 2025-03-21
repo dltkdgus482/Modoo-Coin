@@ -2,11 +2,14 @@
 import styled from 'styled-components';
 
 // Other Components
+import LogInfo from './LogInfo';
 
-const UserInfo = () => {
+const UserInfo = ({logData}) => {
   return (
     <Container>
-      <div></div>
+      <LogInfo
+        logData= {logData}
+      />
     </Container>
   );
 };

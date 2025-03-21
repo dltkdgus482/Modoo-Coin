@@ -27,8 +27,10 @@ function App() {
   const [logData,setLogData] = useState([]);
 
   useEffect(() => {
-    console.log("😆 안녕하세요 ! --- 님 !\n");
-    setLogData("😆 안녕하세요 ! --- 님 !\n")
+    if (logData.length === 0) { // logData가 비어있을 때만 추가
+      let log = `😆 안녕하세요 ! --- 님 !\n`;
+      setLogData([{type:'start',content:log}]); // 처음 한 번만 실행
+    }
   }, []);
 
   // ✅ balance가 변경될 때마다 저장
@@ -90,7 +92,9 @@ function App() {
     <>
       <Container>
         <UpperContainer>
-          <UserContainer />
+          <UserContainer 
+            logData = {logData}
+          />
           <RUComponent
             tradeData={tradeData}
             balance={balance}
