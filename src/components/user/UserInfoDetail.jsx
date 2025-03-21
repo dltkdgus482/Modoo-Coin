@@ -25,6 +25,18 @@ const UserInfoDetail = ({title, content}) => {
 
 export default UserInfoDetail;
 
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 4%;
+  position: relative;
+  background-color: #e9f2f1;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Detail = styled.div`
   display: flex;
