@@ -123,7 +123,7 @@ export default App;
 
 // Styled Components
 const Container = styled.div`
- * {
+  * {
     box-sizing: border-box;
     font-family: 'Press Start 2P', 'Pixelify Sans', monospace !important;
   }
@@ -136,7 +136,8 @@ const Container = styled.div`
   align-items: center;
   gap: 1vw;
 
-  background-color: rgb(225, 225, 225);
+  background-image: url('https://www.transparenttextures.com/patterns/pixel-weave.png');
+  background-color:rgb(70, 121, 85);
 `;
 
 const UpperContainer = styled.div`
