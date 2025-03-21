@@ -16,8 +16,8 @@ export default UserCharacter;
 
 // Styled Components
 const Container = styled.div`
-  width: 92%;
-  height: 44%;
+  width: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
