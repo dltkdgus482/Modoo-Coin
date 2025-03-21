@@ -20,15 +20,21 @@ function App() {
   const initialBalance = Number(localStorage.getItem('balance')) || 1000000000;
   const initialPositions = JSON.parse(localStorage.getItem('positionArray')) || [];
   const initialTradeHistory = JSON.parse(localStorage.getItem('tradeDataHistory')) || [];
+  const initialInputName = localStorage.getItem('inputName') || "";
 
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [tradeData, setTradeData] = useState({});
   const [tradeDataHistory, setTradeDataHistory] = useState(initialTradeHistory);
   const [balance, setBalance] = useState(initialBalance);
   const [positionArray, setPositionArray] = useState(initialPositions);
 
-  const [inputName, setInputName] = useState("");
+  const [inputName, setInputName] = useState(initialInputName);
   const [logData,setLogData] = useState([]);
+  
+  useEffect(() => {
+    // 신규 사용자 여부 판단
+    if (!inputName) setIsVisible(true);
+  }, [])
 
   useEffect(() => {
     if (logData.length === 0) { // logData가 비어있을 때만 추가
