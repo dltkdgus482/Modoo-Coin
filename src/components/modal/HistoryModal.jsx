@@ -17,13 +17,13 @@ const HistoryModal = ({ onClose, tradeDataHistory, setTradeDataHistory }) => {
         return (
           <TradeItem key={index}>
             🪙 코인 종류 : {trade.coinName} <br />
-            💰 진입가 : {trade.entryPrice} <br />
-            🔄 청산가 : {trade.clearPrice} <br />
+            💰 진입가 : {parseInt(trade.entryPrice).toLocaleString()} <br />
+            🔄 청산가 : {parseInt(trade.clearPrice).toLocaleString()} <br />
             {trade.benefit !== undefined && (
               <>
                 {parseFloat(trade.benefit) >= 0
-                  ? `✅ 수익 : +${trade.benefit}`
-                  : `❌ 손실 : ${trade.benefit}`}
+                  ? `✅ 수익 : +${parseInt(trade.benefit).toLocaleString()}`
+                  : `❌ 손실 : -${parseInt(trade.benefit).toLocaleString()}`}
               </>
             )}
             <br />

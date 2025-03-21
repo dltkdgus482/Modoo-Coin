@@ -3,8 +3,8 @@ export function createClearLog(result) {
     const contentWidth = boxWidth - 4; // 좌우 🟦 제외한 내용 너비
 
     const coinNameLine = `🪙 CoinName: ${result.coinName}`.padEnd(contentWidth, " ") + " ";
-    const entryPriceLine = `💵 EntryPrice: ${result.entryPrice}`.padEnd(contentWidth, " ") + " ";
-    const clearPriceLine = `💸 ClearPrice: ${result.clearPrice}`.padEnd(contentWidth, " ") + " ";
+    const entryPriceLine = `💵 EntryPrice: ${parseInt(result.entryPrice).toLocaleString()}`.padEnd(contentWidth, " ") + " ";
+    const clearPriceLine = `💸 ClearPrice: ${parseInt(result.entryPrice).toLocaleString()}`.padEnd(contentWidth, " ") + " ";
 
     let benefitIcon = parseInt(result.benefit) > 0 ? "😍" : "😥";
     let type = parseInt(result.benefit) > 0 ? "clear-win" : "clear-loose";
@@ -12,7 +12,7 @@ export function createClearLog(result) {
         type = 'none';
         benefitIcon = "😒";
     }
-    const benefitLine = `${benefitIcon} Benefit: ${result.benefit}`.padEnd(contentWidth, " ") + " ";
+    const benefitLine = `${benefitIcon} Benefit: ${parseInt(result.benefit).toLocaleString()}`.padEnd(contentWidth, " ") + " ";
 
     let border = "=".repeat(boxWidth); // 상하 경계 줄
 
@@ -30,9 +30,10 @@ export function createClearLog(result) {
 
 export function updateBalance(balance) {
     const boxWidth = 35; // 전체 박스 너비
+
     const contentWidth = boxWidth - 4; // 좌우 🟩 제외한 내용 너비
 
-    const balanceLine = `💵 Current Balance: ${balance}`.padEnd(contentWidth, " ") + " ";
+    const balanceLine = `💵 Current Balance: ${parseInt(balance).toLocaleString()}`.padEnd(contentWidth, " ") + " ";
 
     let border = "=".repeat(boxWidth); // 상하 경계 줄
 
@@ -48,10 +49,10 @@ export function enterPositionLog(position) {
     const contentWidth = boxWidth - 4; // 좌우 🟨 제외한 내용 너비
 
     const coinNameLine = `🪙 CoinName: ${position.coinName}`.padEnd(contentWidth, " ") + " ";
-    const entryPriceLine = `💵 EntryPrice: ${position.entryPrice}`.padEnd(contentWidth, " ") + " ";
+    const entryPriceLine = `💵 EntryPrice: ${parseInt(position.entryPrice).toLocaleString()}`.padEnd(contentWidth, " ") + " ";
     const quantityLine = `📈 Quantity: ${position.quantity}`.padEnd(contentWidth, " ") + " ";
     const totalPrice = position.entryPrice * position.quantity;
-    const totalPriceLine = `📋 Total Price: ${totalPrice}`.padEnd(contentWidth, " ") + " ";
+    const totalPriceLine = `📋 Total Price: ${parseInt(totalPrice).toLocaleString()}`.padEnd(contentWidth, " ") + " ";
 
     let border = "=".repeat(boxWidth); // 상하 경계 줄
 
