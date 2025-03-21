@@ -111,6 +111,7 @@ function App() {
           setPositionArray={setPositionArray}
           setTradeDataHistory={setTradeDataHistory}
           setLogData={setLogData}
+          tradeDataHistory={tradeDataHistory}
         />
       </Container>
       {isVisible && <Modal setIsVisible={setIsVisible} />}
