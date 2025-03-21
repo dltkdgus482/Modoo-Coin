@@ -12,6 +12,8 @@ import Modal from './components/modal/Modal';
 import UserContainer from './components/user/UserContainer';
 import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
+import LogContainer from './components/log/LogContainer';
+import LUComponent from './components/dummyComponents/LUComponent';
 
 function App() {
   // ✅ 초기 로컬 스토리지 데이터 불러오기
@@ -98,10 +100,10 @@ function App() {
     <>
       <Container>
         <UpperContainer>
-          <UserContainer
-            inputName={inputName}
-            balance={balance}
-            logData = {logData}
+          <LUComponent
+              inputName={inputName}
+              balance={balance}
+              logData = {logData}
           />
           <RUComponent
             tradeData={tradeData}
@@ -157,5 +159,6 @@ const UpperContainer = styled.div`
   height: 60%;
   display: flex;
   flex-direction: row;
+  
   gap: 1vw;
 `;
