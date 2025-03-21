@@ -6,11 +6,13 @@ import UserCharacter from './UserCharacter';
 import UserInfo from './UserInfo';
 import CornerList from '../corner/CornerList';
 
-const UserContainer = () => {
+const UserContainer = ({logData}) => {
   return (
     <Container>
       <UserCharacter />
-      <UserInfo />
+      <UserInfo 
+        logData = {logData}
+      />
       <CornerList />
     </Container>
   );
