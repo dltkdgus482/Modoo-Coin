@@ -8,7 +8,7 @@ import CornerList from '../corner/CornerList';
 // Other Components
 
 
-const LUComponent = ({inputName, balance, logData}) => {
+const LUComponent = ({inputName, balance, logData, positionArray}) => {
   return (
     <Container>
       <UserContainer>
@@ -16,6 +16,7 @@ const LUComponent = ({inputName, balance, logData}) => {
         <UserInfo 
           inputName={inputName}
           balance={balance}
+          positionArray={positionArray}
         />
       </UserContainer>
       <LogContainer logData={logData}></LogContainer>
