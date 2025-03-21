@@ -9,7 +9,7 @@ import CornerList from '../corner/CornerList';
 const PositionContainer = ({ tradeData, balance, setBalance, positionArray, setPositionArray, setTradeDataHistory, setLogData, tradeDataHistory }) => {
   return (
     <Container>
-      <PositionHeader tradeDataHistory={tradeDataHistory}/>
+      <PositionHeader tradeDataHistory={tradeDataHistory} setTradeDataHistory={setTradeDataHistory}/>
       <PositionList positionArray={positionArray} tradeData={tradeData} balance={balance} setBalance={setBalance} setPositionArray={setPositionArray} setTradeDataHistory={setTradeDataHistory} setLogData={setLogData}/>
       <CornerList />
     </Container>

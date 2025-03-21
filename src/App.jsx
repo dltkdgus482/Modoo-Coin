@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     if (logData.length === 0) { // logData가 비어있을 때만 추가
-      let log = `😆 안녕하세요 ! --- 님 !\n`;
+      let log = `😆 HELLO !\n`;
       setLogData([{type:'start',content:log}]); // 처음 한 번만 실행
     }
   }, []);
@@ -135,6 +135,11 @@ export default App;
 
 // Styled Components
 const Container = styled.div`
+  * {
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', 'Pixelify Sans', monospace !important;
+  }
+
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -143,7 +148,8 @@ const Container = styled.div`
   align-items: center;
   gap: 1vw;
 
-  background-color: rgb(225, 225, 225);
+  background-image: url('https://www.transparenttextures.com/patterns/pixel-weave.png');
+  background-color:rgb(70, 121, 85);
 `;
 
 const UpperContainer = styled.div`
