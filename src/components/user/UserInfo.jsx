@@ -3,16 +3,18 @@ import styled from 'styled-components';
 
 // Other Components
 import UserInfoDetail from './UserInfoDetail';
+import { calculateProfit } from '../../utils/calculateProfit';
 
 
-const UserInfo = ({inputName, balance}) => {
+const UserInfo = ({inputName, balance, positionArray}) => {
+  const profit = calculateProfit(balance, positionArray); // 초기 금액 기준 수익
   return (
     <Container>
       <UserInfoDetail title={'Name'} content={inputName} ></UserInfoDetail>
       <UserInfoDetail title={'Level'} content={inputName} ></UserInfoDetail>
       <UserInfoDetail title={'Deposit'} content={balance} ></UserInfoDetail>
-      <UserInfoDetail title={'Profit'} content={balance} ></UserInfoDetail>
-      <UserInfoDetail title={'Rank'} content={balance} ></UserInfoDetail>
+      <UserInfoDetail title={'Profit'} content={profit} ></UserInfoDetail>
+      <UserInfoDetail title={'Rank'} content={'1'} ></UserInfoDetail>
     </Container>
   );
 };

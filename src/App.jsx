@@ -60,7 +60,7 @@ function App() {
   }, [tradeDataHistory]);
   // ✅ name 변경될 때마다 저장
   useEffect(() => {
-    localStorage.setItem("inputName", JSON.stringify(inputName));
+    localStorage.setItem("inputName", inputName);
   }, [inputName]);
   
   useEffect(() => {
@@ -110,6 +110,7 @@ function App() {
               inputName={inputName}
               balance={balance}
               logData = {logData}
+              positionArray={positionArray}
           />
           <RUComponent
             tradeData={tradeData}
@@ -136,7 +137,6 @@ function App() {
            MODOO COIN
         </GameTitleBox>
       </Container>
-
 
       {isVisible &&
         <Modal
