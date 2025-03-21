@@ -123,12 +123,21 @@ function App() {
           setLogData={setLogData}
           tradeDataHistory={tradeDataHistory}
         />
+        <BalanceBox>
+          🪙 {balance.toLocaleString()} KRW
+        </BalanceBox>
+        <GameTitleBox>
+           MODOO COIN
+        </GameTitleBox>
       </Container>
+
+
       {isVisible &&
         <Modal
           setIsVisible={setIsVisible}
           setInputName={setInputName}
         />}
+
     </>
   );
 }
@@ -162,3 +171,32 @@ const UpperContainer = styled.div`
   
   gap: 1vw;
 `;
+
+const BalanceBox = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #00ff88;
+  border: 2px solid #00ff88;
+  border-radius: 6px;
+  font-size: 9px;
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
+  z-index: 1000;
+`;
+
+const GameTitleBox = styled.div`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 6px 10px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  font-size: 9px;
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
+  z-index: 1000;
+`;
+

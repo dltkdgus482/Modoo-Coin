@@ -1,6 +1,9 @@
 // Libraries
-import { useEffect } from 'react';
+import { useEffect,useRef } from 'react';
 import styled from 'styled-components';
+
+// assets
+import basicSound from '@/assets/sounds/basic.mp3';
 
 const Container = styled.div`
   width: 92%;
@@ -82,6 +85,11 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
     }
   }, [tradeData]);
 
+  const basicSounds = useRef(new Audio(basicSound));
+  const playSound = () => {
+    basicSounds.current.currentTime = 0.3;
+    basicSounds.current.play();
+  }
   const selectedCoin = tradeData[selectedCoinKey] || { trade_price: 0, change_price: 0, change: "" };
 
   return (
@@ -96,7 +104,11 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
           {Object.entries(cryptoNames).map(([code, name]) => {
             const info = tradeData[code];
             return (
-              <CoinListItem key={code} onClick={() => updateSelectedCoin(code)}>
+              <CoinListItem key={code} onClick={() => {
+                playSound();
+                console.log("누름");
+                updateSelectedCoin(code); 
+              }}>
                 <Symbol>{name}</Symbol>
                 <Price>{info ? `${info.trade_price.toLocaleString()} KRW` : "데이터 없음"}</Price>
                 {info && (
