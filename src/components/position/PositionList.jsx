@@ -11,6 +11,7 @@ const PositionList = ({
   setBalance,
   setPositionArray,
   setTradeDataHistory,
+  setLogData
 }) => {
   return (
     <Container>
@@ -25,6 +26,7 @@ const PositionList = ({
             positionArray={positionArray}
             setPositionArray={setPositionArray}
             setTradeDataHistory={setTradeDataHistory}
+            setLogData={setLogData}
           />
         );
       })}

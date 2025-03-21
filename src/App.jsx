@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
 import { generateFakeData } from './utils/coinGenerate';
+import { updateBalance } from './utils/logUtils';
 
 // Other Components
 import Modal from './components/modal/Modal';
@@ -23,10 +24,22 @@ function App() {
   const [tradeDataHistory, setTradeDataHistory] = useState(initialTradeHistory);
   const [balance, setBalance] = useState(initialBalance);
   const [positionArray, setPositionArray] = useState(initialPositions);
+
   const [inputName, setInputName] = useState("");
+  const [logData,setLogData] = useState([]);
+
+  useEffect(() => {
+    if (logData.length === 0) { // logData가 비어있을 때만 추가
+      let log = `😆 안녕하세요 ! --- 님 !\n`;
+      setLogData([{type:'start',content:log}]); // 처음 한 번만 실행
+    }
+  }, []);
 
   // ✅ balance가 변경될 때마다 저장
   useEffect(() => {
+    let log = updateBalance(balance);
+    //console.log(log);
+    setLogData((prevLog) => [...prevLog,log])
     localStorage.setItem("balance", balance);
   }, [balance]);
   // ✅ position 변경될 때마다 저장
@@ -88,12 +101,14 @@ function App() {
           <UserContainer
             inputName={inputName}
             balance={balance}
+            logData = {logData}
           />
           <RUComponent
             tradeData={tradeData}
             balance={balance}
             setBalance={setBalance}
             setPositionArray={setPositionArray}
+            setLogData={setLogData}
           />
         </UpperContainer>
         <PositionContainer
@@ -103,6 +118,8 @@ function App() {
           positionArray={positionArray}
           setPositionArray={setPositionArray}
           setTradeDataHistory={setTradeDataHistory}
+          setLogData={setLogData}
+          tradeDataHistory={tradeDataHistory}
         />
       </Container>
       {isVisible &&

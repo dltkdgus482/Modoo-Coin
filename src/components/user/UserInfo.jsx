@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 // Other Components
 import UserInfoDetail from './UserInfoDetail';
+import LogInfo from './LogInfo';
 
 const UserInfo = ({inputName, balance}) => {
   return (
@@ -12,6 +13,7 @@ const UserInfo = ({inputName, balance}) => {
       <UserInfoDetail title={'Deposit'} content={balance} ></UserInfoDetail>
       <UserInfoDetail title={'Profit'} content={balance} ></UserInfoDetail>
       <UserInfoDetail title={'Rank'} content={balance} ></UserInfoDetail>
+      <LogInfo logData= {logData} />
     </Container>
   );
 };

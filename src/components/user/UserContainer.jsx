@@ -6,13 +6,15 @@ import UserCharacter from './UserCharacter';
 import UserInfo from './UserInfo';
 import CornerList from '../corner/CornerList';
 
-const UserContainer = ({inputName, balance}) => {
+
+const UserContainer = ({inputName, balance, logData}) => {
   return (
     <Container>
       <UserCharacter />
       <UserInfo 
         inputName={inputName}
         balance={balance}
+        logData = {logData}
       />
       <CornerList />
     </Container>
