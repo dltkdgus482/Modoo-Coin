@@ -6,11 +6,14 @@ import UserCharacter from './UserCharacter';
 import UserInfo from './UserInfo';
 import CornerList from '../corner/CornerList';
 
-const UserContainer = ({logData}) => {
+
+const UserContainer = ({inputName, balance, logData}) => {
   return (
     <Container>
       <UserCharacter />
       <UserInfo 
+        inputName={inputName}
+        balance={balance}
         logData = {logData}
       />
       <CornerList />
@@ -29,8 +32,7 @@ const Container = styled.div`
   background-color: #e9f2f1;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 4%;
 `;
