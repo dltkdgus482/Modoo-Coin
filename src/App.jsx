@@ -23,6 +23,7 @@ function App() {
   const [tradeDataHistory, setTradeDataHistory] = useState(initialTradeHistory);
   const [balance, setBalance] = useState(initialBalance);
   const [positionArray, setPositionArray] = useState(initialPositions);
+  const [inputName, setInputName] = useState("");
 
   // ✅ balance가 변경될 때마다 저장
   useEffect(() => {
@@ -36,7 +37,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem("tradeDataHistory", JSON.stringify(tradeDataHistory));
   }, [tradeDataHistory]);
-
+  // ✅ name 변경될 때마다 저장
+  useEffect(() => {
+    localStorage.setItem("inputName", JSON.stringify(inputName));
+  }, [inputName]);
+  
   useEffect(() => {
     const upbitWS = new UpbitWebSocket([
       'KRW-BTC',
@@ -45,7 +50,7 @@ function App() {
       'KRW-DOT',
       'KRW-ADA',
     ]);
-      
+    
     const handleTradeData = (data) => {
       setTradeData((prevData) => ({
         ...prevData,
@@ -80,7 +85,10 @@ function App() {
     <>
       <Container>
         <UpperContainer>
-          <UserContainer />
+          <UserContainer
+            inputName={inputName}
+            balance={balance}
+          />
           <RUComponent
             tradeData={tradeData}
             balance={balance}
@@ -97,7 +105,11 @@ function App() {
           setTradeDataHistory={setTradeDataHistory}
         />
       </Container>
-      {isVisible && <Modal setIsVisible={setIsVisible} />}
+      {isVisible &&
+        <Modal
+          setIsVisible={setIsVisible}
+          setInputName={setInputName}
+        />}
     </>
   );
 }

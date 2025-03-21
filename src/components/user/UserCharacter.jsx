@@ -22,6 +22,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border: 3px solid #008485;
+  border-right: 1.5 solid #008485;
   background-color: white;
 `;
 

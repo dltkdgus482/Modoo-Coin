@@ -14,9 +14,7 @@ import {
   StyledButton,
 } from './ModalStyles';
 
-const Modal = ({ setIsVisible }) => {
-  const [inputName, setInputName] = useState('굿굿티비');
-
+const Modal = ({ setIsVisible, setInputName }) => {
   return (
     <>
       <Overlay />
@@ -30,7 +28,7 @@ const Modal = ({ setIsVisible }) => {
         <StyledImage src={Image} alt="hana-character" />
         <StyledInput
           type="text"
-          value={inputName}
+          // value={inputName}
           onChange={(e) => setInputName(e.target.value)}
         />
         <StyledButton
