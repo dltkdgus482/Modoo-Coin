@@ -8,10 +8,10 @@ import buySound from '@/assets/sounds/buy.mp3';
 import { lightenColor } from '../../utils/tradeUtils';
 import { useToast } from '../../hooks/useToast';
 
-const TradeButton = ({ handleEnter }) => {
+const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
   const sound = useRef(new Audio(buySound));
   const { toast } = useToast();
-  
+
   sound.current.currentTime = 0;
   const playSound = () => {
     sound.current.currentTime = 0;
@@ -27,7 +27,7 @@ const TradeButton = ({ handleEnter }) => {
           handleEnter('long');
           toast({
             title: '매수 체결',
-            description: '테스트',
+            description: `${selectedCoinKey} Long ${quantity}개 구매 성공`,
           });
         }}
       >
