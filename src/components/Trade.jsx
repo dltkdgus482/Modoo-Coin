@@ -59,6 +59,7 @@ const Trade = ({
         quantity={quantity}
         setQuantity={setQuantity}
         handleEnter={handleEnter}
+        selectedCoinKey={selectedCoinKey}
       />
     </Container>
   );

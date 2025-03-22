@@ -6,9 +6,12 @@ import buySound from '@/assets/sounds/buy.mp3';
 
 // Utils
 import { lightenColor } from '../../utils/tradeUtils';
+import { useToast } from '../../hooks/useToast';
 
-const TradeButton = ({ handleEnter }) => {
+const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
   const sound = useRef(new Audio(buySound));
+  const { toast } = useToast();
+
   sound.current.currentTime = 0;
   const playSound = () => {
     sound.current.currentTime = 0;
@@ -22,6 +25,10 @@ const TradeButton = ({ handleEnter }) => {
         onClick={() => {
           //playSound();
           handleEnter('long');
+          toast({
+            title: `${selectedCoinKey} Long x${quantity} buy`,
+            description: '',
+          });
         }}
       >
         Long
@@ -31,6 +38,10 @@ const TradeButton = ({ handleEnter }) => {
         onClick={() => {
           //playSound();
           handleEnter('short');
+          toast({
+            title: `${selectedCoinKey} Short x${quantity} buy`,
+            description: '',
+          });
         }}
       >
         Short

@@ -7,8 +7,10 @@ import styled from 'styled-components';
 
 // Components
 import PositionItemInfo from './PositionItemInfo';
+import { useToast } from '../../hooks/useToast';
 
 const PositionItem = ({ position, tradeData, balance, setBalance, positionArray, setPositionArray, setTradeDataHistory, setLogData }) => {
+  const { toast } = useToast();
   const benefit = calBenefit(position,tradeData);
   // ✅ 포지션 정리 버튼 클릭 핸들러
   const handleClosePosition = () => {
@@ -21,6 +23,10 @@ const PositionItem = ({ position, tradeData, balance, setBalance, positionArray,
     setLogData((prevLog) => [...prevLog,log]);
     //console.log(log);
     setTradeDataHistory((prevHistory) => [...prevHistory, result]);
+    toast({
+      title: `${result.coinName} ${result.orderType} x${result.quantity} sell`,
+      description: `${benefit>0 ? '+'+benefit.toLocaleString() : benefit.toLocaleString()} ₩`,
+    });
   };
   
   return (

@@ -1,6 +1,7 @@
 // Libraries
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { Toaster } from 'sonner';
 
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
@@ -104,6 +105,7 @@ function App() {
 
   return (
     <>
+      <Toaster position="bottom-right" />
       <Container>
         <UpperContainer>
           <LUComponent

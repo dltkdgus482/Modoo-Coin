@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import TradeInfo from './TradeInfo';
 import TradeButton from './TradeButton';
 
-const TradeContainer = ({ quantity, setQuantity, handleEnter }) => {
+const TradeContainer = ({ quantity, setQuantity, handleEnter, selectedCoinKey }) => {
   return (
     <Container>
       <TradeInfo quantity={quantity} setQuantity={setQuantity} />
-      <TradeButton handleEnter={handleEnter} />
+      <TradeButton handleEnter={handleEnter} selectedCoinKey={selectedCoinKey} quantity={quantity}/>
     </Container>
   );
 };
