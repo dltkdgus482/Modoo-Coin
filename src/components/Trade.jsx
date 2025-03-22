@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
 
 // Utils
-import { enterPosition } from '../utils/trade'; // ✅ trade.js import
+import { enterPosition } from '../utils/trade';
 import { isValid } from '../utils/tradeUtils';
 import { enterPositionLog } from '../utils/logUtils';
 
