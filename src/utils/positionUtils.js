@@ -48,7 +48,7 @@ const currentPrice = tradeData[position.coinName]?.trade_price || " ... $";
 let currentBenefit = 0;
   // ✅ 현재 코인의 실시간 수익 계산  
 if(currentPrice){
-  currentBenefit += position.orderType == "long" ? 
+  currentBenefit += position.orderType == "short" ? 
   (position.entryPrice * position.quantity) - (currentPrice * position.quantity) : 
     (currentPrice * position.quantity) - (position.entryPrice * position.quantity);
 }
