@@ -1,14 +1,14 @@
 // Libraries
 import styled from 'styled-components';
+import UserCharacter from '../user/UserCharacter';
+import UserInfo from '../user/UserInfo';
+import LogContainer from '../log/LogContainer';
+import CornerList from '../corner/CornerList';
 
 // Other Components
-import UserCharacter from './UserCharacter';
-import UserInfo from './UserInfo';
-import CornerList from '../corner/CornerList';
-import LogContainer from '../log/LogContainer';
 
 
-const LUContainer = ({inputName, balance, logData}) => {
+const LUComponent = ({inputName, balance, logData, positionArray}) => {
   return (
     <Container>
       <UserContainer>
@@ -16,6 +16,7 @@ const LUContainer = ({inputName, balance, logData}) => {
         <UserInfo 
           inputName={inputName}
           balance={balance}
+          positionArray={positionArray}
         />
       </UserContainer>
       <LogContainer logData={logData}></LogContainer>
@@ -24,7 +25,7 @@ const LUContainer = ({inputName, balance, logData}) => {
   );
 };
 
-export default LUContainer;
+export default LUComponent;
 
 // Styled Components
 const Container = styled.div`
@@ -35,7 +36,19 @@ const Container = styled.div`
   background-color: #e9f2f1;
 
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+`;
+
+const UserContainer = styled.div`
+  width: 92%;
+  height: 44%;
+  position: relative;
+
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`;
+`

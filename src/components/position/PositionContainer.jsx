@@ -6,11 +6,11 @@ import PositionHeader from './PositionHeader';
 import PositionList from './PositionList';
 import CornerList from '../corner/CornerList';
 
-const PositionContainer = ({ tradeData, balance, setBalance, positionArray, setPositionArray }) => {
+const PositionContainer = ({ tradeData, balance, setBalance, positionArray, setPositionArray, setTradeDataHistory, setLogData, tradeDataHistory }) => {
   return (
     <Container>
-      <PositionHeader setPositionArray={setPositionArray} />
-      <PositionList positionArray={positionArray} tradeData={tradeData} balance={balance} setBalance={setBalance} setPositionArray={setPositionArray}/>
+      <PositionHeader tradeDataHistory={tradeDataHistory} setTradeDataHistory={setTradeDataHistory}/>
+      <PositionList positionArray={positionArray} tradeData={tradeData} balance={balance} setBalance={setBalance} setPositionArray={setPositionArray} setTradeDataHistory={setTradeDataHistory} setLogData={setLogData}/>
       <CornerList />
     </Container>
   );
@@ -21,7 +21,7 @@ export default PositionContainer;
 // Styled Components
 const Container = styled.div`
   width: 70%;
-  height: 26%;
+  height: 30%;
   display: flex;
   position: relative;
   flex-direction: column;

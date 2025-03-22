@@ -1,6 +1,9 @@
-
-import React, { useEffect } from 'react';
+// Libraries
+import { useEffect,useRef } from 'react';
 import styled from 'styled-components';
+
+// assets
+import basicSound from '@/assets/sounds/basic.mp3';
 
 const Container = styled.div`
   width: 92%;
@@ -8,6 +11,7 @@ const Container = styled.div`
   border: 3px solid #008485;
   // font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
+  overflow-y: auto;
 `;
 
 const SelectedCoinHeader = styled.div`
@@ -16,19 +20,20 @@ const SelectedCoinHeader = styled.div`
   align-items: center;
   background-color: var(--hana-primary);
 
-  color: #000000;
+  color: #ffffff;
   padding: 10px;
   font-size: 12px;
 `;
 
 const CoinListContainer = styled.div`
-  border: 2px solid var(--hana-primary);
+  // border: 2px solid var(--hana-primary);
   background-color: #fff;
-  height: 180px;
+  height: 100%;
   overflow-y: auto;
 `;
 
 const CoinListUL = styled.ul`
+  height: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -39,7 +44,7 @@ const CoinListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 2px solid var(--hana-light);
+  // border-bottom: 2px solid var(--hana-light);
   font-size: 10px;
   cursor: pointer;
   transition: background-color 0.1s;
@@ -66,11 +71,12 @@ const Change = styled.span`
 
 
 const cryptoNames = {
-  "KRW-BTC": "비트코인 (BTC)",
-  "KRW-ETH": "이더리움 (ETH)",
-  "KRW-XRP": "리플 (XRP)",
-  "KRW-DOT": "폴카닷 (DOT)",
-  "KRW-ADA": "에이다 (ADA)",
+  "KRW-BTC": "BITCOIN",
+  "KRW-ETH": "ETHEREUM",
+  "KRW-XRP": "RIPPLE",
+  "KRW-DOT": "POLCADOT",
+  "KRW-ADA": "ADA",
+  "KRW-POT": "POLYCOIN"
 };
 
 const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
@@ -80,6 +86,11 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
     }
   }, [tradeData]);
 
+  const basicSounds = useRef(new Audio(basicSound));
+  const playSound = () => {
+    basicSounds.current.currentTime = 0.3;
+    basicSounds.current.play();
+  }
   const selectedCoin = tradeData[selectedCoinKey] || { trade_price: 0, change_price: 0, change: "" };
 
   return (
@@ -94,7 +105,11 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
           {Object.entries(cryptoNames).map(([code, name]) => {
             const info = tradeData[code];
             return (
-              <CoinListItem key={code} onClick={() => updateSelectedCoin(code)}>
+              <CoinListItem key={code} onClick={() => {
+                playSound();
+                console.log("누름");
+                updateSelectedCoin(code); 
+              }}>
                 <Symbol>{name}</Symbol>
                 <Price>{info ? `${info.trade_price.toLocaleString()} KRW` : "데이터 없음"}</Price>
                 {info && (
