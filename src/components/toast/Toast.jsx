@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CornerList from '../corner/CornerList';
 
 export function Toast({ title, description }) {
   return (
@@ -8,21 +9,22 @@ export function Toast({ title, description }) {
         <Title>{title}</Title>
         <Description>{description}</Description>
       </Content>
+      <CornerList></CornerList>
     </Container>
   );
 }
 
 // styled-components
 const Container = styled.div`
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace !important;
+  padding: 16px;
+  max-width: 364px;
+  width: 100%;
+  border: 3px solid black;
   display: flex;
   align-items: center;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  max-width: 364px;
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 `;
 
 const Content = styled.div`

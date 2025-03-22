@@ -24,8 +24,8 @@ const PositionItem = ({ position, tradeData, balance, setBalance, positionArray,
     //console.log(log);
     setTradeDataHistory((prevHistory) => [...prevHistory, result]);
     toast({
-      title: `${result.coinName} ${result.orderType} ${result.quantity}개 판매 성공`,
-      description: `${benefit.toLocaleString()} ₩`,
+      title: `${result.coinName} ${result.orderType} x${result.quantity} sell`,
+      description: `${benefit>0 ? '+'+benefit.toLocaleString() : benefit.toLocaleString()} ₩`,
     });
   };
   

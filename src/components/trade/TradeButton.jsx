@@ -26,7 +26,7 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
           //playSound();
           handleEnter('long');
           toast({
-            title: `${selectedCoinKey} Long ${quantity}개 구매 성공`,
+            title: `${selectedCoinKey} Long x${quantity} buy`,
             description: '',
           });
         }}
@@ -39,7 +39,7 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
           //playSound();
           handleEnter('short');
           toast({
-            title: `${selectedCoinKey} Short ${quantity}개 구매 성공`,
+            title: `${selectedCoinKey} Short x${quantity} buy`,
             description: '',
           });
         }}
