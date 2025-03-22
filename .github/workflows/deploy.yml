@@ -60,5 +60,5 @@ jobs:
           echo "✅ EC2 연결 성공!"
 
           echo "📤 빌드된 파일을 EC2에 업로드합니다."
-          scp -o StrictHostKeyChecking=no -i private_key.pem -r ./dist/* $EC2_USER@$EC2_HOST:/var/www/html/
+          scp -o StrictHostKeyChecking=no -i private_key.pem -r ./dist/* $EC2_USER@$EC2_HOST:/home/ubuntu/legend-repo/
           echo "✅ 빌드된 파일 업로드 완료!"
