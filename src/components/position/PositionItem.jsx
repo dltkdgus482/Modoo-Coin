@@ -1,9 +1,11 @@
 // Utils
 import { calBenefit,closePosition } from '../../utils/positionUtils';
 import { createClearLog } from '../../utils/logUtils';
+import { playSound } from '../../utils/soundUtils';
 
 // Libraries
 import styled from 'styled-components';
+import closeSound from '@/assets/sounds/close.mp3';
 
 // Components
 import PositionItemInfo from './PositionItemInfo';
@@ -23,6 +25,7 @@ const PositionItem = ({ position, tradeData, balance, setBalance, positionArray,
     setLogData((prevLog) => [...prevLog,log]);
     //console.log(log);
     setTradeDataHistory((prevHistory) => [...prevHistory, result]);
+    playSound(closeSound);
     toast({
       title: `${result.coinName} ${result.orderType} x${result.quantity} sell`,
       description: `${benefit>0 ? '+'+benefit.toLocaleString() : benefit.toLocaleString()} ₩`,
