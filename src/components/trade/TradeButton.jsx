@@ -12,24 +12,32 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
 
   const handleClick = (type) => {
     playSound(buySound);
-    handleEnter(type);
-    toast({
-      title: `${selectedCoinKey} Short x${quantity} buy`,
-      description: '',
-    });
+
+    const errorMessages = handleEnter(type);
+    if (errorMessages) {
+      toast({
+        title: `${errorMessages}`
+      })
+    } else {
+      toast({
+        title: `${selectedCoinKey} ${type} x${quantity} buy`,
+        description: '',
+      });
+    }
+
   }
 
   return (
     <Container>
       <StyledButton
         style={{ backgroundColor: '#008485' }}
-        onClick={() => {handleClick('short')}}
+        onClick={() => {handleClick('long')}}
       >
         Long
       </StyledButton>
       <StyledButton
         style={{ backgroundColor: '#0072bc' }}
-        onClick={() => {handleClick('long')}}
+        onClick={() => {handleClick('short')}}
       >
         Short
       </StyledButton>

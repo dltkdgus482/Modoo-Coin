@@ -35,9 +35,8 @@ const Trade = ({
 
 
   const handleEnter = (action) => {
-    if (!isValid(selectedCoin, selectedCoinKey, quantity, balance)) {
-      return;
-    }
+    const errorMessage = isValid(selectedCoin, selectedCoinKey, quantity, balance)
+    if (errorMessage) return errorMessage;
     
     const position = enterPosition(
       selectedCoinKey,
@@ -51,6 +50,7 @@ const Trade = ({
     setLogData((prevLog) => [...prevLog,log]);
     setBalance(balance - selectedCoin * quantity);
     setPositionArray((prevPositions) => [...prevPositions, position]);
+    return '';
   };
 
   return (
