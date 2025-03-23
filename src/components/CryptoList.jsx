@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // assets
 import basicSound from '@/assets/sounds/basic.mp3';
+import { COIN_LIST } from '../constants/coins';
 
 const Container = styled.div`
   position: relative; // ✅ 헤더 고정 기준
@@ -44,7 +45,7 @@ const CoinListUL = styled.ul`
 `;
 
 const CoinListItem = styled.li`
-  display: flex;
+  display: grid;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -52,6 +53,7 @@ const CoinListItem = styled.li`
   font-size: 10px;
   cursor: pointer;
   transition: background-color 0.1s;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   &:hover {
     background-color: var(--hana-light);
@@ -64,12 +66,18 @@ const Symbol = styled.span`
 `;
 
 const Price = styled.span`
-  font-size: 9px;
+  justify-self: end;
+  text-align: right;
+  
+  font-size: clamp(4px, 2vw, 8px);
 `;
 
 const Change = styled.span`
-  font-size: 8px;
+  justify-self: end;
+  text-align: right;
   margin-left: 8px;
+  
+  font-size: clamp(4px, 2vw, 8px);
   color: ${(props) =>
     props.change === 'RISE' ? 'green' :
     props.change === 'FALL' ? 'red' :
@@ -78,14 +86,7 @@ const Change = styled.span`
 `;
 
 
-const cryptoNames = {
-  "KRW-BTC": "BITCOIN",
-  "KRW-ETH": "ETHEREUM",
-  "KRW-XRP": "RIPPLE",
-  "KRW-DOT": "POLCADOT",
-  "KRW-ADA": "ADA",
-  "KRW-POT": "POLYCOIN"
-};
+const cryptoNames = COIN_LIST.RENDER;
 
 const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey, coinListRef }) => {
   useEffect(() => {

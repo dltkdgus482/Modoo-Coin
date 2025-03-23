@@ -20,8 +20,10 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 import LogContainer from './components/log/LogContainer';
 import LUComponent from './components/dummyComponents/LUComponent';
+
 import IntroScreen from './components/intro/MainIntro';
 import TutorialModal from './components/modal/TutorialModal';
+import { COIN_LIST } from './constants/coins';
 
 
 function App() {
@@ -128,13 +130,7 @@ function App() {
   }, [inputName]);
   
   useEffect(() => {
-    const upbitWS = new UpbitWebSocket([
-      'KRW-BTC',
-      'KRW-ETH',
-      'KRW-XRP',
-      'KRW-DOT',
-      'KRW-ADA',
-    ]);
+    const upbitWS = new UpbitWebSocket(COIN_LIST.WS);
     
     const handleTradeData = (data) => {
       setTradeData((prevData) => ({
