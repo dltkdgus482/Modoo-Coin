@@ -8,10 +8,10 @@ const TutorialModal = ({ onClose, refs, positionArray, setPositionArray }) => {
   const dummyPositionKey = 'TUTORIAL_BTC';
 
   const tutorialSteps = [
-    { title: '📈 COIN 목록', desc: '구매하길 원하는 COIN을 클릭해주세요!', ref: refs.coinListRef },
-    { title: '🟢 LONG 버튼', desc: '낮은 가격에 사서 비싸게 팔고 싶으면 LONG 버튼을 클릭해주세요!', ref: refs.longButtonRef },
-    { title: '🔴 LONG 버튼', desc: '비싼 가격에 팔고 낮은 가격에 사고싶으면 SHORT 버튼을 클릭해주세요!', ref: refs.shortButtonRef },
-    { title: '🧹 포지션 CLEAR', desc: '지금이 CLEAR 타이밍이다 싶으면 CLOSE 버튼을 클릭해주세요!', ref: refs.clearButtonRef },
+    { title: '📈 COINLIST', desc: 'Pick a coin, any coin!', ref: refs.coinListRef },
+    { title: '🟢 LONG', desc: 'DDUKSANG? Go LONG and ride the wave up! 🚀', ref: refs.longButtonRef },
+    { title: '🔴 SHORT', desc: 'DDUKLAK? Hit SHORT and profit on the fall! 💥', ref: refs.shortButtonRef },
+    { title: '🧹 CLOSE', desc: 'SONJEOLGAK? Click CLOSE ! 💰', ref: refs.clearButtonRef },
   ];
 
   // ✅ 하이라이트 + 더미 포지션 생성 로직
@@ -72,7 +72,7 @@ const TutorialModal = ({ onClose, refs, positionArray, setPositionArray }) => {
         <h2>{tutorialSteps[step].title}</h2>
         <p>{tutorialSteps[step].desc}</p>
         <TutorialButton onClick={handleNext}>
-          {step === tutorialSteps.length - 1 ? '🎮 시작하기' : '다음 ▶'}
+          {step === tutorialSteps.length - 1 ? '🎮 START' : 'NEXT ▶'}
         </TutorialButton>
       </ModalBox>
     </Overlay>
