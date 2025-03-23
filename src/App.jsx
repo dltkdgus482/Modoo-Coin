@@ -17,6 +17,7 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 import LogContainer from './components/log/LogContainer';
 import LUComponent from './components/dummyComponents/LUComponent';
+import IntroScreen from './components/intro/main-intro';
 
 function App() {
   // ✅ 초기 로컬 스토리지 데이터 불러오기
@@ -36,6 +37,9 @@ function App() {
   // Sound
   const audioRef = useRef(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
+  // Intro
+  const [started, setStarted] = useState(false);
 
   
   useEffect(() => {
@@ -127,6 +131,10 @@ function App() {
     };
   }, []);
 
+  if (!started) {
+    return <IntroScreen onStart={() => setStarted(true)} />;
+  }
+
   return (
     <>
       <Toaster position="bottom-right" />
@@ -194,7 +202,18 @@ const Container = styled.div`
   gap: 1vw;
 
   background-image: url('https://www.transparenttextures.com/patterns/pixel-weave.png');
-  background-color:rgb(70, 121, 85);
+  background-color: rgb(70, 121, 85);
+  background-repeat: repeat;
+  animation: scrollBackground 20s linear infinite;
+
+  @keyframes scrollBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 500px 500px;
+    }
+  }
 `;
 
 const UpperContainer = styled.div`
