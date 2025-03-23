@@ -1,6 +1,7 @@
 // Libraries
 import styled from 'styled-components';
 
+
 const TradeInfo = ({ quantity, setQuantity }) => {
   return (
     <Container>

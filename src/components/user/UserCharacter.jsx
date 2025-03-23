@@ -2,12 +2,17 @@
 import styled from "styled-components";
 
 // Assets
-import CharacterImage from '@/assets/gifs/hana.gif';
+import { calculateProfit } from "../../utils/calculateProfit";
+import { calculateLevel } from "../../utils/calculateLevel";
+import { findCharacter } from "../../utils/findCharacter";
 
-const UserCharacter = () => {
+const UserCharacter = ({balance, positionArray}) => {
+  const profit = calculateProfit(balance, positionArray);
+  const level = calculateLevel(profit);
+  const currentCharacterImage = findCharacter(level);
   return (
     <Container>
-      <Image src={CharacterImage} />
+      <Image src={currentCharacterImage} />
     </Container>
   );
 };
