@@ -15,6 +15,23 @@ import {
 } from './ModalStyles';
 
 const Modal = ({ setIsVisible, setInputName }) => {
+  const [tempName, setTempName] = useState('');
+
+  const handleConfirm = () => {
+    if (tempName.trim()) {
+      setInputName(tempName.trim());
+      setIsVisible(false);
+    } else {
+      alert('이름을 입력해주세요!');
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleConfirm();
+    }
+  };
+
   return (
     <>
       <Overlay />
@@ -28,12 +45,15 @@ const Modal = ({ setIsVisible, setInputName }) => {
         <StyledImage src={Image} alt="hana-character" />
         <StyledInput
           type="text"
-          // value={inputName}
-          onChange={(e) => setInputName(e.target.value)}
+          value={tempName}
+          onChange={(e) => setTempName(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="ex) 홍길동"
+          autoFocus
         />
         <StyledButton
           style={{ backgroundColor: '#008485' }}
-          onClick={() => setIsVisible(false)}
+          onClick={handleConfirm}
         >
           확인
         </StyledButton>

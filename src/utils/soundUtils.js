@@ -1,5 +1,4 @@
 // utils/sound.js
-
 let backgroundAudio = null;
 
 /**
@@ -47,3 +46,5 @@ export const stopBackGroundSound = () => {
     backgroundAudio.currentTime = 0;
   }
 };
+
+

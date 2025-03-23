@@ -7,8 +7,11 @@ import { Toaster } from 'sonner';
 import { UpbitWebSocket } from './utils/cryptoInfo';
 import { generateFakeData } from './utils/coinGenerate';
 import { updateBalance } from './utils/logUtils';
+import { playSound } from './utils/soundUtils';
 
+// assets
 import backGroundSound from '@/assets/sounds/background.mp3';
+import basicSound from '@/assets/sounds/basic.mp3';
 
 // Other Components
 import Modal from './components/modal/Modal';
@@ -17,8 +20,11 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 import LogContainer from './components/log/LogContainer';
 import LUComponent from './components/dummyComponents/LUComponent';
-import IntroScreen from './components/intro/main-intro';
+
+import IntroScreen from './components/intro/MainIntro';
+import TutorialModal from './components/modal/TutorialModal';
 import { COIN_LIST } from './constants/coins';
+
 
 function App() {
   // ✅ 초기 로컬 스토리지 데이터 불러오기
@@ -27,26 +33,56 @@ function App() {
   const initialTradeHistory = JSON.parse(localStorage.getItem('tradeDataHistory')) || [];
   const initialInputName = localStorage.getItem('inputName') || "";
 
+  // ✅ 상태변수 관리리
   const [isVisible, setIsVisible] = useState(false);
   const [tradeData, setTradeData] = useState({});
   const [tradeDataHistory, setTradeDataHistory] = useState(initialTradeHistory);
   const [balance, setBalance] = useState(initialBalance);
   const [positionArray, setPositionArray] = useState(initialPositions);
-
   const [inputName, setInputName] = useState(initialInputName);
   const [logData,setLogData] = useState([]);
-  // Sound
+
+  // ✅ Sound
   const audioRef = useRef(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // Intro
+  // ✅ Intro
   const [started, setStarted] = useState(false);
 
-  
+  // ✅튜토리얼 상태
+  const [showTutorial, setShowTutorial] = useState(false); // 초기에는 false
+  const coinListRef = useRef(null);
+  const longButtonRef = useRef(null);
+  const shortButtonRef = useRef(null);
+  const clearButtonRef = useRef(null);
+
+  const tutorialRefs = {
+    coinListRef,
+    longButtonRef,
+    shortButtonRef,
+    clearButtonRef,
+  };
+
+
   useEffect(() => {
-    // 신규 사용자 여부 판단
-    if (!inputName) setIsVisible(true);
-  }, [])
+    if (!inputName) {
+      setIsVisible(true);       // 이름 입력 모달만 띄움
+    }
+  }, []);
+
+  const handleResetStorage = () => {
+    playSound(basicSound,0.3);
+    localStorage.removeItem('balance');
+    localStorage.removeItem('positionArray');
+    localStorage.removeItem('tradeDataHistory');
+    //localStorage.removeItem('inputName');
+
+    setPositionArray([]);
+    setTradeDataHistory([]);
+    setBalance(1000000000);
+    setLogData([]);
+    // or 윈도우 reload
+  };
 
   const toggleBackgroundMusic = () => {
     if (!audioRef.current) {
@@ -126,6 +162,7 @@ function App() {
     };
   }, []);
 
+  // 조건부 화면 분기 로직
   if (!started) {
     return <IntroScreen onStart={() => setStarted(true)} />;
   }
@@ -134,6 +171,14 @@ function App() {
     <>
       <Toaster position="bottom-right" />
       <Container>
+        {showTutorial && (
+          <TutorialModal
+            onClose={() => setShowTutorial(false)}
+            refs={tutorialRefs}
+            positionArray={positionArray}
+            setPositionArray={setPositionArray}
+          />
+        )}
         <UpperContainer>
           <LUComponent
               inputName={inputName}
@@ -147,6 +192,9 @@ function App() {
             setBalance={setBalance}
             setPositionArray={setPositionArray}
             setLogData={setLogData}
+            coinListRef={coinListRef}
+            longButtonRef={longButtonRef}
+            shortButtonRef={shortButtonRef}
           />
         </UpperContainer>
         <PositionContainer
@@ -158,6 +206,7 @@ function App() {
           setTradeDataHistory={setTradeDataHistory}
           setLogData={setLogData}
           tradeDataHistory={tradeDataHistory}
+          clearButtonRef={clearButtonRef}
         />
         <BalanceBox>
           🪙 {balance.toLocaleString()} KRW
@@ -165,13 +214,20 @@ function App() {
         <GameTitleBox>
            MODOO COIN
         </GameTitleBox>
+        <RefreshButton onClick={handleResetStorage}>
+          ♻ Reset Game
+        </RefreshButton>
       </Container>
 
-      {isVisible &&
+      {isVisible && (
         <Modal
           setIsVisible={setIsVisible}
-          setInputName={setInputName}
-        />}
+          setInputName={(name) => {
+            setInputName(name);
+            setShowTutorial(true); // ✅ 이름 설정 후 튜토리얼 시작
+          }}
+        />
+      )}
       <MusicToggleButton onClick={toggleBackgroundMusic}>
         {isMusicPlaying ? '🔇 MusicON' : '🔊 MusicOFF'}
       </MusicToggleButton>
@@ -224,6 +280,7 @@ const BalanceBox = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+  margin-bottom: 10px;
   padding: 8px 12px;
   background-color: rgba(0, 0, 0, 0.75);
   color: #00ff88;
@@ -269,3 +326,23 @@ const MusicToggleButton = styled.button`
   }
 `;
 
+const RefreshButton = styled.button`
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #ff5e5e;
+  border-radius: 8px;
+  font-size: 10px;
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+
+  &:hover {
+    background-color: #ff5e5e;
+    color: #000;
+  }
+`;

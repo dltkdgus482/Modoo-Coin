@@ -11,9 +11,10 @@ import closeSound from '@/assets/sounds/close.mp3';
 import PositionItemInfo from './PositionItemInfo';
 import { useToast } from '../../hooks/useToast';
 
-const PositionItem = ({ position, tradeData, balance, setBalance, positionArray, setPositionArray, setTradeDataHistory, setLogData }) => {
+const PositionItem = ({ position, tradeData, balance, setBalance, positionArray, setPositionArray, setTradeDataHistory, setLogData, clearButtonRef }) => {
   const { toast } = useToast();
   const benefit = calBenefit(position,tradeData);
+  
   // ✅ 포지션 정리 버튼 클릭 핸들러
   const handleClosePosition = () => {
 
@@ -35,7 +36,8 @@ const PositionItem = ({ position, tradeData, balance, setBalance, positionArray,
   return (
     <Container>
       <PositionItemInfo position={position} benefit={benefit}/>
-      <Button onClick={() => {
+      <Button ref={position.id === 'TUTORIAL_BTC' ? clearButtonRef : null} 
+        onClick={() => {
         handleClosePosition();
       }}>Close</Button>
     </Container>

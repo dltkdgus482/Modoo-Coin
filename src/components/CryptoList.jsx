@@ -88,7 +88,7 @@ const Change = styled.span`
 
 const cryptoNames = COIN_LIST.RENDER;
 
-const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
+const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey, coinListRef }) => {
   useEffect(() => {
     if (tradeData) {
       // console.log("💹 새로운 거래 데이터 수신:", tradeData);
@@ -103,7 +103,7 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
   const selectedCoin = tradeData[selectedCoinKey] || { trade_price: 0, change_price: 0, change: "" };
 
   return (
-    <Container>
+    <Container ref={coinListRef}>
       <SelectedCoinHeader>
         <div>{cryptoNames[selectedCoinKey] || selectedCoinKey}</div>
         <div>{selectedCoin.trade_price.toLocaleString()} KRW</div>

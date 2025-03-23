@@ -1,9 +1,20 @@
 import styled from 'styled-components';
+
+import { playSound } from '../../utils/soundUtils';
+
 import CoinImg from '@/assets/images/coin.png';
 import Character from '@/assets/images/cha1.png';
 import Character2 from '@/assets/images/cha2.png';
+import GameStart from '@/assets/sounds/gamestart.mp3';
+
 
 const IntroScreen = ({ onStart }) => {
+
+    const handleStartClick = () => {
+        playSound(GameStart,0.3);
+        onStart();
+    };
+
   return (
     <Wrapper>
     <Overlay>
@@ -18,7 +29,7 @@ const IntroScreen = ({ onStart }) => {
             <WaveText key={index} index={index}>{char}</WaveText>
         ))}
         </Title>
-        <StartButton onClick={onStart}>▶ Game Start</StartButton>
+        <StartButton onClick={handleStartClick}>▶ Game Start</StartButton>
         </Content>
     </Overlay>
     </Wrapper>
