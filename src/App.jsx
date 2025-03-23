@@ -118,7 +118,7 @@ function App() {
       ...prevData,
       ...generateFakeData(), // ✅ Upbit 데이터 + 가상 데이터 추가
     }));
-  }, 1000);
+  }, 500);
 
     return () => {
       upbitWS.unsubscribeFromData(handleTradeData);

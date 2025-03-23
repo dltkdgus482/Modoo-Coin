@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -23,6 +23,8 @@ ChartJS.register(
 
 const ChartGraph = ({ cryptoName, cryptoPrice }) => {
   const maxDataPoints = 100;
+  const priceRef = useRef(cryptoPrice); // ✅ 가격 저장용
+
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -32,24 +34,34 @@ const ChartGraph = ({ cryptoName, cryptoPrice }) => {
         borderColor: '#008485',
         backgroundColor: 'rgba(0, 114, 188, 0.2)',
         borderWidth: 2,
-        tension: 0,
+        borderDash: [2, 2], 
+        tension: 0,       
         fill: true,
       },
     ],
   });
+
   const [currentCrypto, setCurrentCrypto] = useState(cryptoName);
+
+  // ✅ cryptoPrice가 바뀔 때마다 참조값 업데이트
+  useEffect(() => {
+    priceRef.current = cryptoPrice;
+  }, [cryptoPrice]);
+
 
   useEffect(() => {
     if (!cryptoName || !cryptoPrice) return;
-
+  
     if (cryptoName !== currentCrypto) {
       setChartData({
-        labels: [],
+        labels: [new Date().toLocaleTimeString()], // ⬅ 초기 라벨 추가
         datasets: [
           {
             label: `${cryptoName} 가격`,
-            data: [],
-            borderColor: '#0072bc',
+            data: [cryptoPrice], // ⬅ 초기 데이터
+            borderColor: '#008485',
+            backgroundColor: 'rgba(0, 114, 188, 0.2)',
+            fill: true,
           },
         ],
       });
@@ -86,14 +98,14 @@ const ChartGraph = ({ cryptoName, cryptoPrice }) => {
       });
     };
 
-    const interval = setInterval(updateChart, 1000);
+    const interval = setInterval(updateChart, 500);
 
     return () => clearInterval(interval);
   }, [cryptoPrice]);
 
   const chartOptions = {
     layouts: {},
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     scales: {
       x: {
@@ -136,7 +148,7 @@ const ChartGraph = ({ cryptoName, cryptoPrice }) => {
         data={chartData}
         options={chartOptions}
         style={{
-          width: '96%',
+          width: '100%',
           height: '100%',
           border: '2px solid #008485',
           backgroundColor: 'white',
