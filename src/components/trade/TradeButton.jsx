@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-
 // Libraries
 import styled from 'styled-components';
 import buySound from '@/assets/sounds/buy.mp3';
@@ -7,42 +5,31 @@ import buySound from '@/assets/sounds/buy.mp3';
 // Utils
 import { lightenColor } from '../../utils/tradeUtils';
 import { useToast } from '../../hooks/useToast';
+import { playSound } from '../../utils/soundUtils';
 
 const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
-  const sound = useRef(new Audio(buySound));
   const { toast } = useToast();
 
-  sound.current.currentTime = 0;
-  const playSound = () => {
-    sound.current.currentTime = 0;
-    sound.current.play();
+  const handleClick = (type) => {
+    playSound(buySound);
+    handleEnter(type);
+    toast({
+      title: `${selectedCoinKey} Short x${quantity} buy`,
+      description: '',
+    });
   }
 
   return (
     <Container>
       <StyledButton
         style={{ backgroundColor: '#008485' }}
-        onClick={() => {
-          //playSound();
-          handleEnter('long');
-          toast({
-            title: `${selectedCoinKey} Long x${quantity} buy`,
-            description: '',
-          });
-        }}
+        onClick={() => {handleClick('short')}}
       >
         Long
       </StyledButton>
       <StyledButton
         style={{ backgroundColor: '#0072bc' }}
-        onClick={() => {
-          //playSound();
-          handleEnter('short');
-          toast({
-            title: `${selectedCoinKey} Short x${quantity} buy`,
-            description: '',
-          });
-        }}
+        onClick={() => {handleClick('long')}}
       >
         Short
       </StyledButton>
