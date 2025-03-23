@@ -34,20 +34,15 @@ export const handleEnter = (
 
 export const isValid = (selectedCoin, selectedCoinKey, quantity, balance) => {
   if (!selectedCoinKey || selectedCoin <= 0) {
-    alert('코인을 먼저 선택해주세요!');
-    return false;
+    return '🚨 Select a coin first!';
   }
   if (quantity <= 0) {
-    alert('수량을 입력해주세요!');
-    return false;
+    return '🚨 Enter the quantity!';
   }
   if (quantity * selectedCoin > balance) {
-    alert(
-      '🚨 잔고가 부족합니다! 현재 잔고: ' + balance.toLocaleString() + '원'
-    );
-    return false;
+    return '🚨 Insufficient balance!';
   }
-  return true;
+  return '';
 }
 
 export const lightenColor = (hex, percent) => {
