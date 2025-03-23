@@ -1,6 +1,6 @@
 // Libraries
 import styled from 'styled-components';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 // Utils
 import { enterPosition } from '../utils/trade'; // ✅ trade.js import

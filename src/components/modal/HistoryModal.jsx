@@ -1,16 +1,9 @@
-import { useRef } from 'react';
-
 import styled from 'styled-components';
 import basicSound from '@/assets/sounds/basic.mp3';
 
-const HistoryModal = ({ onClose, tradeDataHistory, setTradeDataHistory }) => {
-    
-    const audioRef = useRef(new Audio(basicSound));
+import { playSound } from '../../utils/soundUtils';
 
-    const playSound = () => {
-        audioRef.current.currentTime = 0.4;
-        audioRef.current.play();
-    };
+const HistoryModal = ({ onClose, tradeDataHistory, setTradeDataHistory }) => {
 
     const createHistory = (trade, index) => {
         const parsedDate = new Date(trade.clearTime);
@@ -68,11 +61,11 @@ const HistoryModal = ({ onClose, tradeDataHistory, setTradeDataHistory }) => {
         <span>📜 Trade History</span>
         <HeaderButtons>
             <ClearBtn onClick={() => {
-                playSound();
+                playSound(basicSound,0.4);
                 setTradeDataHistory([]);
             }}>🧹 Clear</ClearBtn>
             <CloseBtn onClick={() => {
-                playSound();
+                playSound(basicSound,0.4);
                 onClose();
             }}>❌</CloseBtn>
         </HeaderButtons>

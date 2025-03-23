@@ -4,16 +4,17 @@ import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import basicSound from '@/assets/sounds/basic.mp3';
 
+// Utils
+import { playSound } from '../../utils/soundUtils.js';
+
 // Modal
 import HistoryModal from '../modal/HistoryModal.jsx';
 
 const PositionHeader = ({tradeDataHistory, setTradeDataHistory}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const audioRef = useRef(new Audio(basicSound));
   const handleClick = () => {
-    audioRef.current.currentTime = 0.4;
-    audioRef.current.play();
+    playSound(basicSound,0.4);
     setIsModalOpen(true); // 모달 열기
   };
 

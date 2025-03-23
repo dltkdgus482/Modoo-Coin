@@ -1,12 +1,14 @@
 // Libraries
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useRef,useState, useEffect } from 'react';
 import { Toaster } from 'sonner';
 
 // Utils
 import { UpbitWebSocket } from './utils/cryptoInfo';
 import { generateFakeData } from './utils/coinGenerate';
 import { updateBalance } from './utils/logUtils';
+
+import backGroundSound from '@/assets/sounds/background.mp3';
 
 // Other Components
 import Modal from './components/modal/Modal';
@@ -31,11 +33,33 @@ function App() {
 
   const [inputName, setInputName] = useState(initialInputName);
   const [logData,setLogData] = useState([]);
+  // Sound
+  const audioRef = useRef(null);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
   
   useEffect(() => {
     // 신규 사용자 여부 판단
     if (!inputName) setIsVisible(true);
   }, [])
+
+  const toggleBackgroundMusic = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(backGroundSound);
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.2;
+    }
+
+    if (isMusicPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch((e) => {
+        console.warn("🎵 음악 재생 실패", e);
+      });
+    }
+
+    setIsMusicPlaying(!isMusicPlaying);
+  };
 
   useEffect(() => {
     if (logData.length === 0) { // logData가 비어있을 때만 추가
@@ -145,7 +169,9 @@ function App() {
           setIsVisible={setIsVisible}
           setInputName={setInputName}
         />}
-
+      <MusicToggleButton onClick={toggleBackgroundMusic}>
+        {isMusicPlaying ? '🔇 MusicON' : '🔊 MusicOFF'}
+      </MusicToggleButton>
     </>
   );
 }
@@ -206,5 +232,26 @@ const GameTitleBox = styled.div`
   font-size: 9px;
   font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
   z-index: 1000;
+`;
+
+const MusicToggleButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #00ff88;
+  border-radius: 8px;
+  font-size: 10px;
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #00ff88;
+    color: #000;
+  }
 `;
 
