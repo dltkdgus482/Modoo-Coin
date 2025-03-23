@@ -23,13 +23,13 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
     <Container>
       <StyledButton
         style={{ backgroundColor: '#008485' }}
-        onClick={() => {handleClick('short')}}
+        onClick={() => {handleClick('long')}}
       >
         Long
       </StyledButton>
       <StyledButton
         style={{ backgroundColor: '#0072bc' }}
-        onClick={() => {handleClick('long')}}
+        onClick={() => {handleClick('short')}}
       >
         Short
       </StyledButton>
