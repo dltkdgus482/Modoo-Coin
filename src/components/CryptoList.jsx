@@ -6,30 +6,34 @@ import styled from 'styled-components';
 import basicSound from '@/assets/sounds/basic.mp3';
 
 const Container = styled.div`
-  width: 92%;
+  position: relative; // ✅ 헤더 고정 기준
+  width: 95%;
   height: 44%;
   border: 3px solid #008485;
-  // font-family: 'Press Start 2P', cursive;
   color: var(--hana-dark-gray);
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 const SelectedCoinHeader = styled.div`
+  position: absolute; // ✅ 고정
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--hana-primary);
-
   color: #ffffff;
   padding: 10px;
   font-size: 12px;
+  z-index: 1;
 `;
 
 const CoinListContainer = styled.div`
-  // border: 2px solid var(--hana-primary);
   background-color: #fff;
   height: 100%;
   overflow-y: auto;
+  padding-top: 40px; // ✅ 헤더 높이만큼 여백 추가
 `;
 
 const CoinListUL = styled.ul`
@@ -56,17 +60,21 @@ const CoinListItem = styled.li`
 
 const Symbol = styled.span`
   font-weight: bold;
-  font-size: 10px;
+  font-size: 9px;
 `;
 
 const Price = styled.span`
-  font-size: 10px;
+  font-size: 9px;
 `;
 
 const Change = styled.span`
-  font-size: 10px;
+  font-size: 8px;
   margin-left: 8px;
-  color: ${(props) => (props.value > 0 ? 'var(--hana-primary)' : 'var(--hana-blue)')};
+  color: ${(props) =>
+    props.change === 'RISE' ? 'green' :
+    props.change === 'FALL' ? 'red' :
+    'gray'};
+  font-weight: bold;
 `;
 
 
@@ -113,7 +121,7 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
                 <Symbol>{name}</Symbol>
                 <Price>{info ? `${info.trade_price.toLocaleString()} KRW` : "데이터 없음"}</Price>
                 {info && (
-                  <Change value={info.change_price}>
+                  <Change change={info.change}>
                     {info.change_price.toLocaleString()} KRW {info.change === "RISE" ? "▲" : info.change === "FALL" ? "▼" : "-"}
                   </Change>
                 )}

@@ -57,5 +57,6 @@ type === 'clear-loose' ? '#c62828' :   // ✅ 빨간색 (손실)
 type === 'update'      ? '#4B5563' :   // ✅ 회색 (잔고 변경)
 type === 'start'       ? '#6D28D9' :   // ✅ 보라색 (코인 변경 등)
 type === 'enter'       ? '#2055C9' :   // ✅ 파란색 (포지션 진입)
+type === 'clear-win' ? '#3CBD3C': // ✅ 초록색 (손익)
 'black'};
 `;
