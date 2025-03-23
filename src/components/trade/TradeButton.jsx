@@ -12,11 +12,19 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
 
   const handleClick = (type) => {
     playSound(buySound);
-    handleEnter(type);
-    toast({
-      title: `${selectedCoinKey} ${type} x${quantity} buy`,
-      description: '',
-    });
+
+    const errorMessages = handleEnter(type);
+    if (errorMessages) {
+      toast({
+        title: `${errorMessages}`
+      })
+    } else {
+      toast({
+        title: `${selectedCoinKey} ${type} x${quantity} buy`,
+        description: '',
+      });
+    }
+
   }
 
   return (
