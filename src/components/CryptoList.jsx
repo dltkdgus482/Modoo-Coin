@@ -70,7 +70,11 @@ const Price = styled.span`
 const Change = styled.span`
   font-size: 8px;
   margin-left: 8px;
-  color: ${(props) => (props.value > 0 ? 'var(--hana-primary)' : 'var(--hana-blue)')};
+  color: ${(props) =>
+    props.change === 'RISE' ? 'green' :
+    props.change === 'FALL' ? 'red' :
+    'gray'};
+  font-weight: bold;
 `;
 
 
@@ -117,7 +121,7 @@ const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
                 <Symbol>{name}</Symbol>
                 <Price>{info ? `${info.trade_price.toLocaleString()} KRW` : "데이터 없음"}</Price>
                 {info && (
-                  <Change value={info.change_price}>
+                  <Change change={info.change}>
                     {info.change_price.toLocaleString()} KRW {info.change === "RISE" ? "▲" : info.change === "FALL" ? "▼" : "-"}
                   </Change>
                 )}
