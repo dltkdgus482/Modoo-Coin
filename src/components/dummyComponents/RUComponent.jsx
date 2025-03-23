@@ -8,7 +8,7 @@ import Trade from '../../components/Trade';
 import { useState } from 'react';
 import ChartContainer from '../chart/ChartContainer';
 
-const RUComponent = ({ tradeData, balance, setBalance, setPositionArray, setLogData }) => {
+const RUComponent = ({ tradeData, balance, setBalance, setPositionArray, setLogData, coinListRef, longButtonRef, shortButtonRef}) => {
   const [selectedCoinKey, setSelectedCoinKey] = useState('KRW-BTC');
 
   const onSetSelectedCoin = (code) => {
@@ -21,6 +21,7 @@ const RUComponent = ({ tradeData, balance, setBalance, setPositionArray, setLogD
         tradeData={tradeData}
         updateSelectedCoin={onSetSelectedCoin}
         selectedCoinKey={selectedCoinKey}
+        coinListRef={coinListRef}
       />
       <RULComponent>
         <ChartContainer
@@ -35,6 +36,8 @@ const RUComponent = ({ tradeData, balance, setBalance, setPositionArray, setLogD
           setBalance={setBalance}
           setPositionArray={setPositionArray}
           setLogData={setLogData}
+          longButtonRef={longButtonRef}
+          shortButtonRef={shortButtonRef}
         />
       </RULComponent>
       <CornerList />

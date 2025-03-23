@@ -20,7 +20,9 @@ import RUComponent from './components/dummyComponents/RUComponent';
 import PositionContainer from './components/position/PositionContainer';
 import LogContainer from './components/log/LogContainer';
 import LUComponent from './components/dummyComponents/LUComponent';
-import IntroScreen from './components/intro/main-intro';
+import IntroScreen from './components/intro/MainIntro';
+import TutorialModal from './components/modal/TutorialModal';
+
 
 function App() {
   // ✅ 초기 로컬 스토리지 데이터 불러오기
@@ -29,26 +31,42 @@ function App() {
   const initialTradeHistory = JSON.parse(localStorage.getItem('tradeDataHistory')) || [];
   const initialInputName = localStorage.getItem('inputName') || "";
 
+  // ✅ 상태변수 관리리
   const [isVisible, setIsVisible] = useState(false);
   const [tradeData, setTradeData] = useState({});
   const [tradeDataHistory, setTradeDataHistory] = useState(initialTradeHistory);
   const [balance, setBalance] = useState(initialBalance);
   const [positionArray, setPositionArray] = useState(initialPositions);
-
   const [inputName, setInputName] = useState(initialInputName);
   const [logData,setLogData] = useState([]);
-  // Sound
+
+  // ✅ Sound
   const audioRef = useRef(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-  // Intro
+  // ✅ Intro
   const [started, setStarted] = useState(false);
 
-  
+  // ✅튜토리얼 상태
+  const [showTutorial, setShowTutorial] = useState(false); // 초기에는 false
+  const coinListRef = useRef(null);
+  const longButtonRef = useRef(null);
+  const shortButtonRef = useRef(null);
+  const clearButtonRef = useRef(null);
+
+  const tutorialRefs = {
+    coinListRef,
+    longButtonRef,
+    shortButtonRef,
+    clearButtonRef,
+  };
+
+
   useEffect(() => {
-    // 신규 사용자 여부 판단
-    if (!inputName) setIsVisible(true);
-  }, [])
+    if (!inputName) {
+      setIsVisible(true);       // 이름 입력 모달만 띄움
+    }
+  }, []);
 
   const handleResetStorage = () => {
     playSound(basicSound,0.3);
@@ -148,6 +166,7 @@ function App() {
     };
   }, []);
 
+  // 조건부 화면 분기 로직
   if (!started) {
     return <IntroScreen onStart={() => setStarted(true)} />;
   }
@@ -156,6 +175,14 @@ function App() {
     <>
       <Toaster position="bottom-right" />
       <Container>
+        {showTutorial && (
+          <TutorialModal
+            onClose={() => setShowTutorial(false)}
+            refs={tutorialRefs}
+            positionArray={positionArray}
+            setPositionArray={setPositionArray}
+          />
+        )}
         <UpperContainer>
           <LUComponent
               inputName={inputName}
@@ -169,6 +196,9 @@ function App() {
             setBalance={setBalance}
             setPositionArray={setPositionArray}
             setLogData={setLogData}
+            coinListRef={coinListRef}
+            longButtonRef={longButtonRef}
+            shortButtonRef={shortButtonRef}
           />
         </UpperContainer>
         <PositionContainer
@@ -180,6 +210,7 @@ function App() {
           setTradeDataHistory={setTradeDataHistory}
           setLogData={setLogData}
           tradeDataHistory={tradeDataHistory}
+          clearButtonRef={clearButtonRef}
         />
         <BalanceBox>
           🪙 {balance.toLocaleString()} KRW
@@ -192,11 +223,15 @@ function App() {
         </RefreshButton>
       </Container>
 
-      {isVisible &&
+      {isVisible && (
         <Modal
           setIsVisible={setIsVisible}
-          setInputName={setInputName}
-        />}
+          setInputName={(name) => {
+            setInputName(name);
+            setShowTutorial(true); // ✅ 이름 설정 후 튜토리얼 시작
+          }}
+        />
+      )}
       <MusicToggleButton onClick={toggleBackgroundMusic}>
         {isMusicPlaying ? '🔇 MusicON' : '🔊 MusicOFF'}
       </MusicToggleButton>

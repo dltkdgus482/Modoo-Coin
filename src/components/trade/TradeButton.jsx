@@ -7,7 +7,7 @@ import { lightenColor } from '../../utils/tradeUtils';
 import { useToast } from '../../hooks/useToast';
 import { playSound } from '../../utils/soundUtils';
 
-const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
+const TradeButton = ({ handleEnter, selectedCoinKey, quantity, longButtonRef,shortButtonRef }) => {
   const { toast } = useToast();
 
   const handleClick = (type) => {
@@ -29,13 +29,13 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
 
   return (
     <Container>
-      <StyledButton
+      <StyledButton ref={longButtonRef}
         style={{ backgroundColor: '#008485' }}
         onClick={() => {handleClick('long')}}
       >
         Long
       </StyledButton>
-      <StyledButton
+      <StyledButton ref={shortButtonRef}
         style={{ backgroundColor: '#0072bc' }}
         onClick={() => {handleClick('short')}}
       >

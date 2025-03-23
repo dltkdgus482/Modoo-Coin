@@ -20,7 +20,9 @@ const Trade = ({
   setBalance,
   setPositionArray,
   selectedCoinKey,
-  setLogData
+  setLogData,
+  longButtonRef,
+  shortButtonRef,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedCoin, setSelectedCoin] = useState(
@@ -60,6 +62,8 @@ const Trade = ({
         setQuantity={setQuantity}
         handleEnter={handleEnter}
         selectedCoinKey={selectedCoinKey}
+        longButtonRef={longButtonRef}
+        shortButtonRef={shortButtonRef}
       />
     </Container>
   );
