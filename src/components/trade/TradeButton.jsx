@@ -14,7 +14,7 @@ const TradeButton = ({ handleEnter, selectedCoinKey, quantity }) => {
     playSound(buySound);
     handleEnter(type);
     toast({
-      title: `${selectedCoinKey} Short x${quantity} buy`,
+      title: `${selectedCoinKey} ${type} x${quantity} buy`,
       description: '',
     });
   }
