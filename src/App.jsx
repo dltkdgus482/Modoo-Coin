@@ -7,8 +7,11 @@ import { Toaster } from 'sonner';
 import { UpbitWebSocket } from './utils/cryptoInfo';
 import { generateFakeData } from './utils/coinGenerate';
 import { updateBalance } from './utils/logUtils';
+import { playSound } from './utils/soundUtils';
 
+// assets
 import backGroundSound from '@/assets/sounds/background.mp3';
+import basicSound from '@/assets/sounds/basic.mp3';
 
 // Other Components
 import Modal from './components/modal/Modal';
@@ -46,6 +49,20 @@ function App() {
     // 신규 사용자 여부 판단
     if (!inputName) setIsVisible(true);
   }, [])
+
+  const handleResetStorage = () => {
+    playSound(basicSound,0.3);
+    localStorage.removeItem('balance');
+    localStorage.removeItem('positionArray');
+    localStorage.removeItem('tradeDataHistory');
+    //localStorage.removeItem('inputName');
+
+    setPositionArray([]);
+    setTradeDataHistory([]);
+    setBalance(1000000000);
+    setLogData([]);
+    // or 윈도우 reload
+  };
 
   const toggleBackgroundMusic = () => {
     if (!audioRef.current) {
@@ -170,6 +187,9 @@ function App() {
         <GameTitleBox>
            MODOO COIN
         </GameTitleBox>
+        <RefreshButton onClick={handleResetStorage}>
+          ♻ Reset Game
+        </RefreshButton>
       </Container>
 
       {isVisible &&
@@ -229,6 +249,7 @@ const BalanceBox = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+  margin-bottom: 10px;
   padding: 8px 12px;
   background-color: rgba(0, 0, 0, 0.75);
   color: #00ff88;
@@ -274,3 +295,23 @@ const MusicToggleButton = styled.button`
   }
 `;
 
+const RefreshButton = styled.button`
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #ff5e5e;
+  border-radius: 8px;
+  font-size: 10px;
+  font-family: 'Press Start 2P', 'Pixelify Sans', monospace;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1000;
+
+  &:hover {
+    background-color: #ff5e5e;
+    color: #000;
+  }
+`;
