@@ -18,6 +18,7 @@ import PositionContainer from './components/position/PositionContainer';
 import LogContainer from './components/log/LogContainer';
 import LUComponent from './components/dummyComponents/LUComponent';
 import IntroScreen from './components/intro/main-intro';
+import { COIN_LIST } from './constants/coins';
 
 function App() {
   // ✅ 초기 로컬 스토리지 데이터 불러오기
@@ -93,13 +94,7 @@ function App() {
   }, [inputName]);
   
   useEffect(() => {
-    const upbitWS = new UpbitWebSocket([
-      'KRW-BTC',
-      'KRW-ETH',
-      'KRW-XRP',
-      'KRW-DOT',
-      'KRW-ADA',
-    ]);
+    const upbitWS = new UpbitWebSocket(COIN_LIST.WS);
     
     const handleTradeData = (data) => {
       setTradeData((prevData) => ({

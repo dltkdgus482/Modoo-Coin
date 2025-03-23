@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // assets
 import basicSound from '@/assets/sounds/basic.mp3';
+import { COIN_LIST } from '../constants/coins';
 
 const Container = styled.div`
   position: relative; // ✅ 헤더 고정 기준
@@ -78,14 +79,7 @@ const Change = styled.span`
 `;
 
 
-const cryptoNames = {
-  "KRW-BTC": "BITCOIN",
-  "KRW-ETH": "ETHEREUM",
-  "KRW-XRP": "RIPPLE",
-  "KRW-DOT": "POLCADOT",
-  "KRW-ADA": "ADA",
-  "KRW-POT": "POLYCOIN"
-};
+const cryptoNames = COIN_LIST.RENDER;
 
 const CryptoList = ({ tradeData, updateSelectedCoin, selectedCoinKey }) => {
   useEffect(() => {
