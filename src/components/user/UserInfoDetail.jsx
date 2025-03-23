@@ -7,18 +7,18 @@ const UserInfoDetail = ({title, content}) => {
   let value = content;
   switch (title) {
       case 'Deposit': {
-          value = `${content.toLocaleString('ko-KR')} ₩`;
+          value = `${content.toLocaleString('ko-KR')} KRW`;
           break;
       }
       case 'Profit': {
-          value = `${content.toLocaleString('ko-KR')} ₩`;
+          value = `${content.toLocaleString('ko-KR')} KRW`;
           break;
       }
   }
   return (
     <Container>
-        <Detail>{title} :</Detail>
-        <Detail>{value}</Detail>
+        <DetailTitle>{title}</DetailTitle>
+        <DetailValue>{value}</DetailValue>
     </Container>
   );
 };
@@ -30,15 +30,18 @@ const Container = styled.div`
   height: 100%;
   padding: 4%;
   position: relative;
-  background-color: #e9f2f1;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 `;
 
-const Detail = styled.div`
+const DetailTitle = styled.div`
   display: flex;
-  align-items: center;
+  align-self: flex-start;
+`;
+
+const DetailValue = styled.div`
+  display: flex;
+  align-self: flex-end;
 `;
