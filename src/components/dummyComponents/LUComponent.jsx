@@ -12,7 +12,10 @@ const LUComponent = ({inputName, balance, logData, positionArray}) => {
   return (
     <Container>
       <UserContainer>
-        <UserCharacter />
+        <UserCharacter
+          balance={balance}
+          positionArray={positionArray}
+        />
         <UserInfo 
           inputName={inputName}
           balance={balance}
