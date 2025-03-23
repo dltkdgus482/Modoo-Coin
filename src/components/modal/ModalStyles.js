@@ -88,3 +88,8 @@ export const StyledButton = styled.button`
     transform: translateY(2px);
   }
 `;
+
+export const StyledAlertText = styled.div`
+  position: relative;
+  margin: -15px;
+`

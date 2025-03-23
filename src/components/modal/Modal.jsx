@@ -12,17 +12,19 @@ import {
   StyledImage,
   StyledInput,
   StyledButton,
+  StyledAlertText,
 } from './ModalStyles';
 
 const Modal = ({ setIsVisible, setInputName }) => {
   const [tempName, setTempName] = useState('');
+  const [isNameValid, setIsNameValid] = useState(true);
 
   const handleConfirm = () => {
     if (tempName.trim()) {
       setInputName(tempName.trim());
       setIsVisible(false);
     } else {
-      alert('이름을 입력해주세요!');
+      setIsNameValid(false);
     }
   };
 
@@ -51,6 +53,7 @@ const Modal = ({ setIsVisible, setInputName }) => {
           placeholder="ex) 홍길동"
           autoFocus
         />
+        {!isNameValid && <StyledAlertText>이름이 입력되지 않았어요.</StyledAlertText>}
         <StyledButton
           style={{ backgroundColor: '#008485' }}
           onClick={handleConfirm}
