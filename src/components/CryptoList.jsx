@@ -45,7 +45,7 @@ const CoinListUL = styled.ul`
 `;
 
 const CoinListItem = styled.li`
-  display: flex;
+  display: grid;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -53,6 +53,7 @@ const CoinListItem = styled.li`
   font-size: 10px;
   cursor: pointer;
   transition: background-color 0.1s;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   &:hover {
     background-color: var(--hana-light);
@@ -65,12 +66,18 @@ const Symbol = styled.span`
 `;
 
 const Price = styled.span`
-  font-size: 9px;
+  justify-self: end;
+  text-align: right;
+  
+  font-size: clamp(4px, 2vw, 8px);
 `;
 
 const Change = styled.span`
-  font-size: 8px;
+  justify-self: end;
+  text-align: right;
   margin-left: 8px;
+  
+  font-size: clamp(4px, 2vw, 8px);
   color: ${(props) =>
     props.change === 'RISE' ? 'green' :
     props.change === 'FALL' ? 'red' :
